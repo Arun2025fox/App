@@ -3,33 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-const kThemeModeKey = '__theme_mode__';
-
-SharedPreferences? _prefs;
+enum DeviceSize {
+  mobile,
+  tablet,
+  desktop,
+}
 
 abstract class FlutterFlowTheme {
-  static Future initialize() async =>
-      _prefs = await SharedPreferences.getInstance();
-
-  static ThemeMode get themeMode {
-    final darkMode = _prefs?.getBool(kThemeModeKey);
-    return darkMode == null
-        ? ThemeMode.system
-        : darkMode
-            ? ThemeMode.dark
-            : ThemeMode.light;
-  }
-
-  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+  static DeviceSize deviceSize = DeviceSize.mobile;
 
   static FlutterFlowTheme of(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? DarkModeTheme()
-        : LightModeTheme();
+    deviceSize = getDeviceSize(context);
+    return LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -137,7 +122,22 @@ abstract class FlutterFlowTheme {
   bool get bodySmallIsCustom => typography.bodySmallIsCustom;
   TextStyle get bodySmall => typography.bodySmall;
 
-  Typography get typography => ThemeTypography(this);
+  Typography get typography => {
+        DeviceSize.mobile: MobileTypography(this),
+        DeviceSize.tablet: TabletTypography(this),
+        DeviceSize.desktop: DesktopTypography(this),
+      }[deviceSize]!;
+}
+
+DeviceSize getDeviceSize(BuildContext context) {
+  final width = MediaQuery.sizeOf(context).width;
+  if (width < 479) {
+    return DeviceSize.mobile;
+  } else if (width < 991) {
+    return DeviceSize.tablet;
+  } else {
+    return DeviceSize.desktop;
+  }
 }
 
 class LightModeTheme extends FlutterFlowTheme {
@@ -148,13 +148,13 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF4B39EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
-  late Color alternate = const Color(0xFFE0E3E7);
+  late Color primary = const Color(0xFF2E3094);
+  late Color secondary = const Color(0xFF00A63E);
+  late Color tertiary = const Color(0xFFEEF0F4);
+  late Color alternate = const Color(0xFFE17100);
   late Color primaryText = const Color(0xFF14181B);
   late Color secondaryText = const Color(0xFFFFFFFF);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color primaryBackground = const Color(0xFFF9FAFB);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color accent1 = const Color(0x4C4B39EF);
   late Color accent2 = const Color(0x4D39D2C0);
@@ -220,148 +220,340 @@ abstract class Typography {
   TextStyle get bodySmall;
 }
 
-class ThemeTypography extends Typography {
-  ThemeTypography(this.theme);
+class MobileTypography extends Typography {
+  MobileTypography(this.theme);
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Inter Tight';
+  String get displayLargeFamily => 'Italiana';
   bool get displayLargeIsCustom => false;
-  TextStyle get displayLarge => GoogleFonts.interTight(
-        color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 64.0,
-      );
-  String get displayMediumFamily => 'Inter Tight';
-  bool get displayMediumIsCustom => false;
-  TextStyle get displayMedium => GoogleFonts.interTight(
-        color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 44.0,
-      );
-  String get displaySmallFamily => 'Inter Tight';
-  bool get displaySmallIsCustom => false;
-  TextStyle get displaySmall => GoogleFonts.interTight(
-        color: theme.primaryText,
-        fontWeight: FontWeight.w600,
-        fontSize: 36.0,
-      );
-  String get headlineLargeFamily => 'Inter Tight';
-  bool get headlineLargeIsCustom => false;
-  TextStyle get headlineLarge => GoogleFonts.interTight(
+  TextStyle get displayLarge => GoogleFonts.italiana(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Inter Tight';
-  bool get headlineMediumIsCustom => false;
-  TextStyle get headlineMedium => GoogleFonts.interTight(
+  String get displayMediumFamily => 'Italiana';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.italiana(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'Inter Tight';
-  bool get headlineSmallIsCustom => false;
-  TextStyle get headlineSmall => GoogleFonts.interTight(
+  String get displaySmallFamily => 'Italiana';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 26.0,
+      );
+  String get headlineLargeFamily => 'Italiana';
+  bool get headlineLargeIsCustom => false;
+  TextStyle get headlineLarge => GoogleFonts.italiana(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Inter Tight';
-  bool get titleLargeIsCustom => false;
-  TextStyle get titleLarge => GoogleFonts.interTight(
+  String get headlineMediumFamily => 'Italiana';
+  bool get headlineMediumIsCustom => false;
+  TextStyle get headlineMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 22.0,
+      );
+  String get headlineSmallFamily => 'Italiana';
+  bool get headlineSmallIsCustom => false;
+  TextStyle get headlineSmall => GoogleFonts.italiana(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleMediumFamily => 'Inter Tight';
-  bool get titleMediumIsCustom => false;
-  TextStyle get titleMedium => GoogleFonts.interTight(
+  String get titleLargeFamily => 'Italiana';
+  bool get titleLargeIsCustom => false;
+  TextStyle get titleLarge => GoogleFonts.italiana(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Inter Tight';
-  bool get titleSmallIsCustom => false;
-  TextStyle get titleSmall => GoogleFonts.interTight(
+  String get titleMediumFamily => 'Italiana';
+  bool get titleMediumIsCustom => false;
+  TextStyle get titleMedium => GoogleFonts.italiana(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Inter';
-  bool get labelLargeIsCustom => false;
-  TextStyle get labelLarge => GoogleFonts.inter(
-        color: theme.secondaryText,
-        fontWeight: FontWeight.normal,
-        fontSize: 16.0,
+  String get titleSmallFamily => 'Italiana';
+  bool get titleSmallIsCustom => false;
+  TextStyle get titleSmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Inter';
+  String get labelLargeFamily => 'Lato';
+  bool get labelLargeIsCustom => false;
+  TextStyle get labelLarge => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 22.0,
+      );
+  String get labelMediumFamily => 'Lato';
   bool get labelMediumIsCustom => false;
-  TextStyle get labelMedium => GoogleFonts.inter(
-        color: theme.secondaryText,
+  TextStyle get labelMedium => GoogleFonts.lato(
+        color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Inter';
+  String get labelSmallFamily => 'Lato';
   bool get labelSmallIsCustom => false;
-  TextStyle get labelSmall => GoogleFonts.inter(
-        color: theme.secondaryText,
+  TextStyle get labelSmall => GoogleFonts.lato(
+        color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Inter';
+  String get bodyLargeFamily => 'Lato';
   bool get bodyLargeIsCustom => false;
-  TextStyle get bodyLarge => GoogleFonts.inter(
+  TextStyle get bodyLarge => GoogleFonts.lato(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Inter';
+  String get bodyMediumFamily => 'Lato';
   bool get bodyMediumIsCustom => false;
-  TextStyle get bodyMedium => GoogleFonts.inter(
+  TextStyle get bodyMedium => GoogleFonts.lato(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Inter';
+  String get bodySmallFamily => 'Lato';
   bool get bodySmallIsCustom => false;
-  TextStyle get bodySmall => GoogleFonts.inter(
+  TextStyle get bodySmall => GoogleFonts.lato(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
 }
 
-class DarkModeTheme extends FlutterFlowTheme {
-  @Deprecated('Use primary instead')
-  Color get primaryColor => primary;
-  @Deprecated('Use secondary instead')
-  Color get secondaryColor => secondary;
-  @Deprecated('Use tertiary instead')
-  Color get tertiaryColor => tertiary;
+class TabletTypography extends Typography {
+  TabletTypography(this.theme);
 
-  late Color primary = const Color(0xFF4B39EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
-  late Color alternate = const Color(0xFF262D34);
-  late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFFFFFFFF);
-  late Color primaryBackground = const Color(0xFF1D2428);
-  late Color secondaryBackground = const Color(0xFF14181B);
-  late Color accent1 = const Color(0x4C4B39EF);
-  late Color accent2 = const Color(0x4D39D2C0);
-  late Color accent3 = const Color(0x4DEE8B60);
-  late Color accent4 = const Color(0xB2262D34);
-  late Color success = const Color(0xFF249689);
-  late Color warning = const Color(0xFFF9CF58);
-  late Color error = const Color(0xFFFF5963);
-  late Color info = const Color(0xFFFFFFFF);
+  final FlutterFlowTheme theme;
 
-  late Color customColor1 = const Color(0xFF242424);
-  late Color customColor2 = const Color(0xFF89DC8C);
-  late Color blue = const Color(0xFF5794F2);
-  late Color green = const Color(0xFF89DC8C);
-  late Color background = const Color(0xFFF5F5F5);
+  String get displayLargeFamily => 'Italiana';
+  bool get displayLargeIsCustom => false;
+  TextStyle get displayLarge => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 40.0,
+      );
+  String get displayMediumFamily => 'Italiana';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 36.0,
+      );
+  String get displaySmallFamily => 'Italiana';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 30.0,
+      );
+  String get headlineLargeFamily => 'Italiana';
+  bool get headlineLargeIsCustom => false;
+  TextStyle get headlineLarge => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 26.0,
+      );
+  String get headlineMediumFamily => 'Italiana';
+  bool get headlineMediumIsCustom => false;
+  TextStyle get headlineMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 24.0,
+      );
+  String get headlineSmallFamily => 'Italiana';
+  bool get headlineSmallIsCustom => false;
+  TextStyle get headlineSmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 22.0,
+      );
+  String get titleLargeFamily => 'Italiana';
+  bool get titleLargeIsCustom => false;
+  TextStyle get titleLarge => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
+      );
+  String get titleMediumFamily => 'Italiana';
+  bool get titleMediumIsCustom => false;
+  TextStyle get titleMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get titleSmallFamily => 'Italiana';
+  bool get titleSmallIsCustom => false;
+  TextStyle get titleSmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+      );
+  String get labelLargeFamily => 'Lato';
+  bool get labelLargeIsCustom => false;
+  TextStyle get labelLarge => GoogleFonts.lato(
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 24.0,
+      );
+  String get labelMediumFamily => 'Lato';
+  bool get labelMediumIsCustom => false;
+  TextStyle get labelMedium => GoogleFonts.lato(
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get labelSmallFamily => 'Lato';
+  bool get labelSmallIsCustom => false;
+  TextStyle get labelSmall => GoogleFonts.lato(
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 12.0,
+      );
+  String get bodyLargeFamily => 'Lato';
+  bool get bodyLargeIsCustom => false;
+  TextStyle get bodyLarge => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 18.0,
+      );
+  String get bodyMediumFamily => 'Lato';
+  bool get bodyMediumIsCustom => false;
+  TextStyle get bodyMedium => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
+      );
+  String get bodySmallFamily => 'Lato';
+  bool get bodySmallIsCustom => false;
+  TextStyle get bodySmall => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+}
+
+class DesktopTypography extends Typography {
+  DesktopTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Italiana';
+  bool get displayLargeIsCustom => false;
+  TextStyle get displayLarge => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Italiana';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Italiana';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 26.0,
+      );
+  String get headlineLargeFamily => 'Italiana';
+  bool get headlineLargeIsCustom => false;
+  TextStyle get headlineLarge => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Italiana';
+  bool get headlineMediumIsCustom => false;
+  TextStyle get headlineMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 28.0,
+      );
+  String get headlineSmallFamily => 'Italiana';
+  bool get headlineSmallIsCustom => false;
+  TextStyle get headlineSmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 24.0,
+      );
+  String get titleLargeFamily => 'Italiana';
+  bool get titleLargeIsCustom => false;
+  TextStyle get titleLarge => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
+      );
+  String get titleMediumFamily => 'Italiana';
+  bool get titleMediumIsCustom => false;
+  TextStyle get titleMedium => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get titleSmallFamily => 'Italiana';
+  bool get titleSmallIsCustom => false;
+  TextStyle get titleSmall => GoogleFonts.italiana(
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+      );
+  String get labelLargeFamily => 'Lato';
+  bool get labelLargeIsCustom => false;
+  TextStyle get labelLarge => GoogleFonts.lato(
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 28.0,
+      );
+  String get labelMediumFamily => 'Lato';
+  bool get labelMediumIsCustom => false;
+  TextStyle get labelMedium => GoogleFonts.lato(
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
+  String get labelSmallFamily => 'Lato';
+  bool get labelSmallIsCustom => false;
+  TextStyle get labelSmall => GoogleFonts.lato(
+        color: theme.secondaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 12.0,
+      );
+  String get bodyLargeFamily => 'Lato';
+  bool get bodyLargeIsCustom => false;
+  TextStyle get bodyLarge => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 18.0,
+      );
+  String get bodyMediumFamily => 'Lato';
+  bool get bodyMediumIsCustom => false;
+  TextStyle get bodyMedium => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
+      );
+  String get bodySmallFamily => 'Lato';
+  bool get bodySmallIsCustom => false;
+  TextStyle get bodySmall => GoogleFonts.lato(
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 14.0,
+      );
 }
 
 extension TextStyleHelper on TextStyle {
