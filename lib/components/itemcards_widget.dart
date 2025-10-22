@@ -9,10 +9,12 @@ class ItemcardsWidget extends StatefulWidget {
     super.key,
     required this.name,
     required this.price,
+    required this.imageUrl,
   });
 
   final String? name;
   final double? price;
+  final String? imageUrl;
 
   @override
   State<ItemcardsWidget> createState() => _ItemcardsWidgetState();
@@ -65,7 +67,7 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
-                    'https://picsum.photos/seed/708/600',
+                    widget.imageUrl ?? 'https://picsum.photos/seed/708/600',
                     width: 206.2,
                     height: 200.0,
                     fit: BoxFit.cover,
@@ -96,7 +98,7 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
                   widget.price,
                   formatType: FormatType.decimal,
                   decimalType: DecimalType.automatic,
-                  currency: '',
+                  currency: 'INR',
                 ),
                 style: FlutterFlowTheme.of(context).labelLarge.override(
                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,

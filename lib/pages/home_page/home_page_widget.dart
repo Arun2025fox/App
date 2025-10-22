@@ -30,6 +30,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+// store the future so it's called only once
+ late Future<ApiCallResponse> _generateCatalogueFuture;
 
   @override
   void initState() {
@@ -38,6 +40,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     _model.searchbarTextController ??= TextEditingController();
     _model.searchbarFocusNode ??= FocusNode();
+    // call once and reuse
+   _generateCatalogueFuture = GenerateCatalogueCall.call();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -1620,165 +1624,109 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
-                                            child: Text(
-                                              'Products For You',
-                                              textAlign: TextAlign.start,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineMediumFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineMediumIsCustom,
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                        wrapWithModel(
-                                          model: _model.filterbydropdownModel,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: FilterbydropdownWidget(),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: FutureBuilder<ApiCallResponse>(
-                                        future: GenerateCatalogueCall.call(),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          final itemlistingGenerateCatalogueResponse =
-                                              snapshot.data!;
+                         
+                                        Flexible(
+  fit: FlexFit.loose,
+  child: Align(
+    alignment: AlignmentDirectional(0.0, 0.0),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Align(
+          alignment: AlignmentDirectional(0.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Products For You',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      color: FlutterFlowTheme.of(context).primary,
+                    ),
+              ),
+              wrapWithModel(
+                model: _model.filterbydropdownModel,
+                updateCallback: () => safeSetState(() {}),
+                child: FilterbydropdownWidget(),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        // ✅ Wrap FutureBuilder inside scroll view
+        SingleChildScrollView(
+          child: FutureBuilder<ApiCallResponse>(
+            future: _generateCatalogueFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+              if (!snapshot.hasData || snapshot.data == null) {
+                return const Center(child: Text('No data found'));
+              }
 
-                                          return Builder(
-                                            builder: (context) {
-                                              final listofproducts =
-                                                  getJsonField(
-                                                itemlistingGenerateCatalogueResponse
-                                                    .jsonBody,
-                                                r'''$.products''',
-                                              ).toList().take(10).toList();
+              final response = snapshot.data!;
+              final products = getJsonField(response.jsonBody, r'$.products');
+              if (products == null) {
+                return const Center(child: Text('No products found in response'));
+              }
 
-                                              return Wrap(
-                                                spacing: 25.0,
-                                                runSpacing: 20.0,
-                                                alignment: WrapAlignment.start,
-                                                crossAxisAlignment:
-                                                    WrapCrossAlignment.start,
-                                                direction: Axis.horizontal,
-                                                runAlignment:
-                                                    WrapAlignment.start,
-                                                verticalDirection:
-                                                    VerticalDirection.down,
-                                                clipBehavior: Clip.none,
-                                                children: List.generate(
-                                                    listofproducts.length,
-                                                    (listofproductsIndex) {
-                                                  final listofproductsItem =
-                                                      listofproducts[
-                                                          listofproductsIndex];
-                                                  return ItemcardsWidget(
-                                                    key: Key(
-                                                        'Key4hu_${listofproductsIndex}_of_${listofproducts.length}'),
-                                                    name: '',
-                                                    price: .0,
-                                                  );
-                                                }),
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('LOADMORE pressed ...');
-                                      },
-                                      text: 'Load More',
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 16.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  !FlutterFlowTheme.of(context)
-                                                      .bodyLargeIsCustom,
-                                            ),
-                                        elevation: 0.0,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                    ),
-                                  ),
-                                ].divide(SizedBox(height: 25.0)),
-                              ),
-                            ),
-                          ),
+              final listofproducts = (products as List).take(10).toList();
+
+              return Wrap(
+                spacing: 25.0,
+                runSpacing: 20.0,
+                children: List.generate(listofproducts.length, (index) {
+                  final item = listofproducts[index];
+                  final name =
+                      getJsonField(item, r'$.name')?.toString() ?? 'Unnamed';
+                  final priceRaw =
+                      getJsonField(item, r'$.product_variants[0].saleprice');
+                  final imageUrl =
+                      getJsonField(item, r'$.product_variants[0].image_url');
+                  final price = (priceRaw is num) ? priceRaw.toDouble() : 0.0;
+
+                  return ItemcardsWidget(
+                    key: Key('item_$index'),
+                    name: name,
+                    price: price,
+                    imageUrl: imageUrl,
+                  );
+                }),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 25),
+        Center(
+          child: FFButtonWidget(
+            onPressed: () {
+              print('LOADMORE pressed ...');
+            },
+            text: 'Load More',
+            options: FFButtonOptions(
+              height: 40.0,
+              color: FlutterFlowTheme.of(context).primary,
+              textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                  ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+        ),
+      ],
+    ),
+  ),
+),
+
                         ].divide(SizedBox(width: 20.0)),
                       ),
                     ),
