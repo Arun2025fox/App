@@ -1,5 +1,4 @@
 import '/components/filterbydropdown_widget.dart';
-import '/components/itemcards_widget.dart';
 import '/components/productscategory_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -46,8 +45,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? checkboxValue11;
   // Model for filterbydropdown component.
   late FilterbydropdownModel filterbydropdownModel;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -61,7 +58,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void initState(BuildContext context) {
     productscategoryModel = createModel(context, () => ProductscategoryModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
-    itemcardsModel = createModel(context, () => ItemcardsModel());
   }
 
   @override
@@ -71,6 +67,5 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
     productscategoryModel.dispose();
     filterbydropdownModel.dispose();
-    itemcardsModel.dispose();
   }
 }

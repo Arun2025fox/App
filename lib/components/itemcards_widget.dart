@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,14 @@ import 'itemcards_model.dart';
 export 'itemcards_model.dart';
 
 class ItemcardsWidget extends StatefulWidget {
-  const ItemcardsWidget({super.key});
+  const ItemcardsWidget({
+    super.key,
+    required this.name,
+    required this.price,
+  });
+
+  final String? name;
+  final double? price;
 
   @override
   State<ItemcardsWidget> createState() => _ItemcardsWidgetState();
@@ -65,42 +71,15 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Align(
-                  alignment: AlignmentDirectional(1.0, 0.0),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
-                    child: Container(
-                      width: 35.42,
-                      height: 35.42,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderRadius: 8.0,
-                          buttonSize: 35.0,
-                          icon: Icon(
-                            Icons.favorite_border,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 18.0,
-                          ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
             Align(
               alignment: AlignmentDirectional(-1.0, 0.0),
               child: Text(
-                'Foaming dollar chain',
+                valueOrDefault<String>(
+                  widget.name,
+                  'Tst',
+                ),
                 style: FlutterFlowTheme.of(context).bodyLarge.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                       letterSpacing: 0.0,
@@ -113,7 +92,12 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
             Align(
               alignment: AlignmentDirectional(-1.0, 0.0),
               child: Text(
-                '₹300 ',
+                formatNumber(
+                  widget.price,
+                  formatType: FormatType.decimal,
+                  decimalType: DecimalType.automatic,
+                  currency: '',
+                ),
                 style: FlutterFlowTheme.of(context).labelLarge.override(
                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                       color: FlutterFlowTheme.of(context).primaryText,
