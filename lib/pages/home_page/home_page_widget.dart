@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/filterbydropdown_widget.dart';
 import '/components/itemcards_widget.dart';
 import '/components/productscategory_widget.dart';
@@ -1673,25 +1674,68 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Align(
                                       alignment:
                                           AlignmentDirectional(-1.0, 0.0),
-                                      child: Wrap(
-                                        spacing: 25.0,
-                                        runSpacing: 20.0,
-                                        alignment: WrapAlignment.start,
-                                        crossAxisAlignment:
-                                            WrapCrossAlignment.start,
-                                        direction: Axis.horizontal,
-                                        runAlignment: WrapAlignment.start,
-                                        verticalDirection:
-                                            VerticalDirection.down,
-                                        clipBehavior: Clip.none,
-                                        children: [
-                                          wrapWithModel(
-                                            model: _model.itemcardsModel,
-                                            updateCallback: () =>
-                                                safeSetState(() {}),
-                                            child: ItemcardsWidget(),
-                                          ),
-                                        ],
+                                      child: FutureBuilder<ApiCallResponse>(
+                                        future: GenerateCatalogueCall.call(),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final itemlistingGenerateCatalogueResponse =
+                                              snapshot.data!;
+
+                                          return Builder(
+                                            builder: (context) {
+                                              final listofproducts =
+                                                  getJsonField(
+                                                itemlistingGenerateCatalogueResponse
+                                                    .jsonBody,
+                                                r'''$.products''',
+                                              ).toList().take(10).toList();
+
+                                              return Wrap(
+                                                spacing: 25.0,
+                                                runSpacing: 20.0,
+                                                alignment: WrapAlignment.start,
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.start,
+                                                direction: Axis.horizontal,
+                                                runAlignment:
+                                                    WrapAlignment.start,
+                                                verticalDirection:
+                                                    VerticalDirection.down,
+                                                clipBehavior: Clip.none,
+                                                children: List.generate(
+                                                    listofproducts.length,
+                                                    (listofproductsIndex) {
+                                                  final listofproductsItem =
+                                                      listofproducts[
+                                                          listofproductsIndex];
+                                                  return ItemcardsWidget(
+                                                    key: Key(
+                                                        'Key4hu_${listofproductsIndex}_of_${listofproducts.length}'),
+                                                    name: '',
+                                                    price: .0,
+                                                  );
+                                                }),
+                                              );
+                                            },
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),
