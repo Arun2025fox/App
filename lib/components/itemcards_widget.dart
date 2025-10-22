@@ -96,7 +96,7 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
                   widget.price,
                   formatType: FormatType.decimal,
                   decimalType: DecimalType.automatic,
-                  currency: '',
+                  currency: '₹',
                 ),
                 style: FlutterFlowTheme.of(context).labelLarge.override(
                       fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,

@@ -1725,11 +1725,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   final listofproductsItem =
                                                       listofproducts[
                                                           listofproductsIndex];
-                                                  return ItemcardsWidget(
-                                                    key: Key(
-                                                        'Key4hu_${listofproductsIndex}_of_${listofproducts.length}'),
-                                                    name: '',
-                                                    price: .0,
+                                                  return wrapWithModel(
+                                                    model: _model
+                                                        .itemcardsModels
+                                                        .getModel(
+                                                      listofproductsItem
+                                                          .toString(),
+                                                      listofproductsIndex,
+                                                    ),
+                                                    updateCallback: () =>
+                                                        safeSetState(() {}),
+                                                    child: ItemcardsWidget(
+                                                      key: Key(
+                                                        'Key4hu_${listofproductsItem.toString()}',
+                                                      ),
+                                                      name: '',
+                                                      price: listofproductsItem,
+                                                    ),
                                                   );
                                                 }),
                                               );
