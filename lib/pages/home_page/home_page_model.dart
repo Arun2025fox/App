@@ -1,5 +1,6 @@
 import '/components/filterbydropdown_widget.dart';
 import '/components/itemcards_widget.dart';
+import '/components/productscategory_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'home_page_widget.dart' show HomePageWidget;
@@ -17,6 +18,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 1;
 
+  // Model for productscategory component.
+  late ProductscategoryModel productscategoryModel;
   // State field(s) for Checkbox widget.
   bool? checkboxValue1;
   // State field(s) for Checkbox widget.
@@ -44,37 +47,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Model for filterbydropdown component.
   late FilterbydropdownModel filterbydropdownModel;
   // Model for itemcards component.
-  late ItemcardsModel itemcardsModel1;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel2;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel3;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel4;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel5;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel6;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel7;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel8;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel9;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel10;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel11;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel12;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel13;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel14;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel15;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel16;
+  late ItemcardsModel itemcardsModel;
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -86,23 +59,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void initState(BuildContext context) {
+    productscategoryModel = createModel(context, () => ProductscategoryModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
-    itemcardsModel1 = createModel(context, () => ItemcardsModel());
-    itemcardsModel2 = createModel(context, () => ItemcardsModel());
-    itemcardsModel3 = createModel(context, () => ItemcardsModel());
-    itemcardsModel4 = createModel(context, () => ItemcardsModel());
-    itemcardsModel5 = createModel(context, () => ItemcardsModel());
-    itemcardsModel6 = createModel(context, () => ItemcardsModel());
-    itemcardsModel7 = createModel(context, () => ItemcardsModel());
-    itemcardsModel8 = createModel(context, () => ItemcardsModel());
-    itemcardsModel9 = createModel(context, () => ItemcardsModel());
-    itemcardsModel10 = createModel(context, () => ItemcardsModel());
-    itemcardsModel11 = createModel(context, () => ItemcardsModel());
-    itemcardsModel12 = createModel(context, () => ItemcardsModel());
-    itemcardsModel13 = createModel(context, () => ItemcardsModel());
-    itemcardsModel14 = createModel(context, () => ItemcardsModel());
-    itemcardsModel15 = createModel(context, () => ItemcardsModel());
-    itemcardsModel16 = createModel(context, () => ItemcardsModel());
+    itemcardsModel = createModel(context, () => ItemcardsModel());
   }
 
   @override
@@ -110,22 +69,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     searchbarFocusNode?.dispose();
     searchbarTextController?.dispose();
 
+    productscategoryModel.dispose();
     filterbydropdownModel.dispose();
-    itemcardsModel1.dispose();
-    itemcardsModel2.dispose();
-    itemcardsModel3.dispose();
-    itemcardsModel4.dispose();
-    itemcardsModel5.dispose();
-    itemcardsModel6.dispose();
-    itemcardsModel7.dispose();
-    itemcardsModel8.dispose();
-    itemcardsModel9.dispose();
-    itemcardsModel10.dispose();
-    itemcardsModel11.dispose();
-    itemcardsModel12.dispose();
-    itemcardsModel13.dispose();
-    itemcardsModel14.dispose();
-    itemcardsModel15.dispose();
-    itemcardsModel16.dispose();
+    itemcardsModel.dispose();
   }
 }
