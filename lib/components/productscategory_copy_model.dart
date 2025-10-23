@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dropdown_widget.dart' show DropdownWidget;
+import 'productscategory_copy_widget.dart' show ProductscategoryCopyWidget;
 import 'package:flutter/material.dart';
 
-class DropdownModel extends FlutterFlowModel<DropdownWidget> {
+class ProductscategoryCopyModel
+    extends FlutterFlowModel<ProductscategoryCopyWidget> {
   @override
   void initState(BuildContext context) {}
 

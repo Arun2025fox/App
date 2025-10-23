@@ -2,18 +2,23 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dropdown_model.dart';
-export 'dropdown_model.dart';
+import 'dropdown_anklets_model.dart';
+export 'dropdown_anklets_model.dart';
 
-class DropdownWidget extends StatefulWidget {
-  const DropdownWidget({super.key});
+class DropdownAnkletsWidget extends StatefulWidget {
+  const DropdownAnkletsWidget({
+    super.key,
+    required this.draopdown,
+  });
+
+  final bool? draopdown;
 
   @override
-  State<DropdownWidget> createState() => _DropdownWidgetState();
+  State<DropdownAnkletsWidget> createState() => _DropdownAnkletsWidgetState();
 }
 
-class _DropdownWidgetState extends State<DropdownWidget> {
-  late DropdownModel _model;
+class _DropdownAnkletsWidgetState extends State<DropdownAnkletsWidget> {
+  late DropdownAnkletsModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -24,7 +29,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DropdownModel());
+    _model = createModel(context, () => DropdownAnkletsModel());
   }
 
   @override
@@ -39,7 +44,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Container(
-        width: 244.03,
+        width: 284.05,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -77,7 +82,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Replace Widget',
+                              ' Premium ad kemp anklets',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -118,7 +123,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Wrap Widget',
+                            ' Premium Foaming ad star anklets',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -158,7 +163,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Copy Widget Code',
+                            'Gold Look Micro Anklets',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -198,7 +203,47 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Save as Theme Style',
+                            'one gram model Anklets',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.plusJakartaSans(
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  color: Color(0xFF14181B),
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Premium Hanging anklets ',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
