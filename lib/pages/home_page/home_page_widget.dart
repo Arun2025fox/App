@@ -31,17 +31,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+// store the future so it's called only once
+ late Future<ApiCallResponse> _generateCatalogueFuture;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
-    _model.searchbarTextController1 ??= TextEditingController();
-    _model.searchbarFocusNode1 ??= FocusNode();
-
-    _model.searchbarTextController2 ??= TextEditingController();
-    _model.searchbarFocusNode2 ??= FocusNode();
+    _model.searchbarTextController ??= TextEditingController();
+    _model.searchbarFocusNode ??= FocusNode();
+    // call once and reuse
+   _generateCatalogueFuture = GenerateCatalogueCall.call();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -1978,39 +1979,151 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ].divide(SizedBox(width: 20.0)),
                             ),
                           ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                60.0, 25.0, 60.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    'Testimonials',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineMediumFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts:
-                                              !FlutterFlowTheme.of(context)
-                                                  .headlineMediumIsCustom,
-                                        ),
+                         
+                                        Flexible(
+  fit: FlexFit.loose,
+  child: Align(
+    alignment: AlignmentDirectional(0.0, 0.0),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Align(
+          alignment: AlignmentDirectional(0.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Products For You',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      color: FlutterFlowTheme.of(context).primary,
+                    ),
+              ),
+              wrapWithModel(
+                model: _model.filterbydropdownModel,
+                updateCallback: () => safeSetState(() {}),
+                child: FilterbydropdownWidget(),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        // ✅ Wrap FutureBuilder inside scroll view
+        SingleChildScrollView(
+          child: FutureBuilder<ApiCallResponse>(
+            future: _generateCatalogueFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+              if (!snapshot.hasData || snapshot.data == null) {
+                return const Center(child: Text('No data found'));
+              }
+
+              final response = snapshot.data!;
+              final products = getJsonField(response.jsonBody, r'$.products');
+              if (products == null) {
+                return const Center(child: Text('No products found in response'));
+              }
+
+              final listofproducts = (products as List).take(10).toList();
+
+              return Wrap(
+                spacing: 25.0,
+                runSpacing: 20.0,
+                children: List.generate(listofproducts.length, (index) {
+                  final item = listofproducts[index];
+                  final name =
+                      getJsonField(item, r'$.name')?.toString() ?? 'Unnamed';
+                  final priceRaw =
+                      getJsonField(item, r'$.product_variants[0].saleprice');
+                  final imageUrl =
+                      getJsonField(item, r'$.product_variants[0].image_url');
+                  final price = (priceRaw is num) ? priceRaw.toDouble() : 0.0;
+
+                  return ItemcardsWidget(
+                    key: Key('item_$index'),
+                    name: name,
+                    price: price,
+                    imageUrl: imageUrl,
+                  );
+                }),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 25),
+        Center(
+          child: FFButtonWidget(
+            onPressed: () {
+              print('LOADMORE pressed ...');
+            },
+            text: 'Load More',
+            options: FFButtonOptions(
+              height: 40.0,
+              color: FlutterFlowTheme.of(context).primary,
+              textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                  ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+        ),
+      ],
+    ),
+  ),
+),
+
+                        ].divide(SizedBox(width: 20.0)),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(60.0, 25.0, 60.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Text(
+                              'Testimonials',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .headlineMediumIsCustom,
                                   ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 319.3,
-                                  child: Stack(
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 319.3,
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 40.0),
+                                  child: PageView(
+                                    controller: _model.pageViewController ??=
+                                        PageController(initialPage: 0),
+                                    scrollDirection: Axis.horizontal,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(

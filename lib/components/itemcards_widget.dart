@@ -5,7 +5,16 @@ import 'itemcards_model.dart';
 export 'itemcards_model.dart';
 
 class ItemcardsWidget extends StatefulWidget {
-  const ItemcardsWidget({super.key});
+  const ItemcardsWidget({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
+  });
+
+  final String? name;
+  final double? price;
+  final String? imageUrl;
 
   @override
   State<ItemcardsWidget> createState() => _ItemcardsWidgetState();
@@ -85,10 +94,14 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
             Align(
               alignment: AlignmentDirectional(-1.0, 0.0),
               child: Text(
-                '100',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).labelMediumFamily,
+                formatNumber(
+                  widget.price,
+                  formatType: FormatType.decimal,
+                  decimalType: DecimalType.automatic,
+                  currency: 'INR',
+                ),
+                style: FlutterFlowTheme.of(context).labelLarge.override(
+                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                       color: FlutterFlowTheme.of(context).primaryText,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
