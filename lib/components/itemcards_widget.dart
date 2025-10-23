@@ -5,7 +5,16 @@ import 'itemcards_model.dart';
 export 'itemcards_model.dart';
 
 class ItemcardsWidget extends StatefulWidget {
-  const ItemcardsWidget({super.key});
+  const ItemcardsWidget({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.imageUrl,
+  });
+
+  final String? name;
+  final double? price;
+  final String? imageUrl;
 
   @override
   State<ItemcardsWidget> createState() => _ItemcardsWidgetState();
@@ -36,8 +45,8 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 157.98,
-      height: 275.7,
+      width: 229.8,
+      height: 334.37,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.circular(10.0),
@@ -51,20 +60,17 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           children: [
             Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      'https://picsum.photos/seed/708/600',
-                      width: 203.8,
-                      height: 130.95,
-                      fit: BoxFit.cover,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    widget.imageUrl ?? 'https://picsum.photos/seed/708/600',
+                    width: 206.2,
+                    height: 200.0,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ],
@@ -72,7 +78,10 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
             Align(
               alignment: AlignmentDirectional(-1.0, 0.0),
               child: Text(
-                'Foaming dollar chain',
+                valueOrDefault<String>(
+                  widget.name,
+                  'Tst',
+                ),
                 style: FlutterFlowTheme.of(context).bodyLarge.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                       letterSpacing: 0.0,
@@ -85,15 +94,19 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
             Align(
               alignment: AlignmentDirectional(-1.0, 0.0),
               child: Text(
-                '100',
-                style: FlutterFlowTheme.of(context).labelMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).labelMediumFamily,
+                formatNumber(
+                  widget.price,
+                  formatType: FormatType.decimal,
+                  decimalType: DecimalType.automatic,
+                  currency: 'INR',
+                ),
+                style: FlutterFlowTheme.of(context).labelLarge.override(
+                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                       color: FlutterFlowTheme.of(context).primaryText,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                       useGoogleFonts:
-                          !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                          !FlutterFlowTheme.of(context).labelLargeIsCustom,
                     ),
               ),
             ),
@@ -135,7 +148,7 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
                 ),
               ),
             ),
-          ].divide(SizedBox(height: 10.0)),
+          ].divide(SizedBox(height: 8.0)),
         ),
       ),
     );
