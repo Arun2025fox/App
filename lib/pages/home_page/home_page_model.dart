@@ -16,12 +16,18 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   FocusNode? searchbarFocusNode1;
   TextEditingController? searchbarTextController1;
   String? Function(BuildContext, String?)? searchbarTextController1Validator;
+  // State field(s) for Row widget.
+  ScrollController? rowController1;
   // State field(s) for MouseRegion widget.
   bool mouseRegionHovered = false;
+  // State field(s) for Row widget.
+  ScrollController? rowController2;
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 1;
 
+  // State field(s) for productcategory widget.
+  ScrollController? productcategoryScrollController;
   // Model for productscategory component.
   late ProductscategoryModel productscategoryModel;
   // State field(s) for Checkbox widget.
@@ -63,6 +69,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void initState(BuildContext context) {
+    rowController1 = ScrollController();
+    rowController2 = ScrollController();
+    productcategoryScrollController = ScrollController();
     productscategoryModel = createModel(context, () => ProductscategoryModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
     itemcardsModel = createModel(context, () => ItemcardsModel());
@@ -76,6 +85,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     searchbarFocusNode1?.dispose();
     searchbarTextController1?.dispose();
 
+    rowController1?.dispose();
+    rowController2?.dispose();
+    productcategoryScrollController?.dispose();
     productscategoryModel.dispose();
     filterbydropdownModel.dispose();
     itemcardsModel.dispose();

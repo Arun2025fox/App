@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
@@ -711,72 +712,436 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   60.0, 0.0, 60.0, 0.0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    MouseRegion(
-                                      opaque: false,
-                                      cursor: MouseCursor.defer ??
-                                          MouseCursor.defer,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Builder(
-                                              builder: (context) => InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await showAlignedDialog(
-                                                    context: context,
-                                                    isGlobal: false,
-                                                    avoidOverflow: false,
-                                                    targetAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, 1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    followerAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, -1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    builder: (dialogContext) {
-                                                      return Material(
-                                                        color:
+                              child: ScrollConfiguration(
+                                behavior:
+                                    ScrollConfiguration.of(context).copyWith(
+                                  scrollbars: false,
+                                  dragDevices: {
+                                    PointerDeviceKind.mouse,
+                                    PointerDeviceKind.touch,
+                                    PointerDeviceKind.stylus,
+                                    PointerDeviceKind.unknown,
+                                  },
+                                ),
+                                child: Scrollbar(
+                                  controller: _model.rowController1,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    controller: _model.rowController1,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        MouseRegion(
+                                          opaque: false,
+                                          cursor: MouseCursor.defer ??
+                                              MouseCursor.defer,
+                                          child: ScrollConfiguration(
+                                            behavior:
+                                                ScrollConfiguration.of(context)
+                                                    .copyWith(
+                                              scrollbars: false,
+                                              dragDevices: {
+                                                PointerDeviceKind.mouse,
+                                                PointerDeviceKind.touch,
+                                                PointerDeviceKind.stylus,
+                                                PointerDeviceKind.unknown,
+                                              },
+                                            ),
+                                            child: Scrollbar(
+                                              controller: _model.rowController2,
+                                              child: SingleChildScrollView(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                controller:
+                                                    _model.rowController2,
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Builder(
+                                                      builder: (context) =>
+                                                          InkWell(
+                                                        splashColor:
                                                             Colors.transparent,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              DropdownAnkletsWidget(
-                                                            draopdown: false,
-                                                          ),
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showAlignedDialog(
+                                                            context: context,
+                                                            isGlobal: false,
+                                                            avoidOverflow:
+                                                                false,
+                                                            targetAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            followerAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        -1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Material(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus();
+                                                                    FocusManager
+                                                                        .instance
+                                                                        .primaryFocus
+                                                                        ?.unfocus();
+                                                                  },
+                                                                  child:
+                                                                      DropdownAnkletsWidget(
+                                                                    draopdown:
+                                                                        false,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Anklets',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLargeIsCustom,
+                                                              ),
                                                         ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Text(
-                                                  'Anklets',
-                                                  style:
-                                                      FlutterFlowTheme.of(
-                                                              context)
+                                                      ),
+                                                    ),
+                                                    Builder(
+                                                      builder: (context) =>
+                                                          InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showAlignedDialog(
+                                                            context: context,
+                                                            isGlobal: false,
+                                                            avoidOverflow:
+                                                                false,
+                                                            targetAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            followerAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        -1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Material(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus();
+                                                                    FocusManager
+                                                                        .instance
+                                                                        .primaryFocus
+                                                                        ?.unfocus();
+                                                                  },
+                                                                  child:
+                                                                      DropdownAnkletsWidget(
+                                                                    draopdown:
+                                                                        false,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Haram',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLargeIsCustom,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Builder(
+                                                      builder: (context) =>
+                                                          InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showAlignedDialog(
+                                                            context: context,
+                                                            isGlobal: false,
+                                                            avoidOverflow:
+                                                                false,
+                                                            targetAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            followerAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        -1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Material(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus();
+                                                                    FocusManager
+                                                                        .instance
+                                                                        .primaryFocus
+                                                                        ?.unfocus();
+                                                                  },
+                                                                  child:
+                                                                      DropdownAnkletsWidget(
+                                                                    draopdown:
+                                                                        false,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Bangles',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLargeIsCustom,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Builder(
+                                                      builder: (context) =>
+                                                          InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showAlignedDialog(
+                                                            context: context,
+                                                            isGlobal: false,
+                                                            avoidOverflow:
+                                                                false,
+                                                            targetAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            followerAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        -1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Material(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus();
+                                                                    FocusManager
+                                                                        .instance
+                                                                        .primaryFocus
+                                                                        ?.unfocus();
+                                                                  },
+                                                                  child:
+                                                                      DropdownAnkletsWidget(
+                                                                    draopdown:
+                                                                        false,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Bracelets',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLargeIsCustom,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Builder(
+                                                      builder: (context) =>
+                                                          InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showAlignedDialog(
+                                                            context: context,
+                                                            isGlobal: false,
+                                                            avoidOverflow:
+                                                                false,
+                                                            targetAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            followerAnchor:
+                                                                AlignmentDirectional(
+                                                                        -1.0,
+                                                                        -1.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Material(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus();
+                                                                    FocusManager
+                                                                        .instance
+                                                                        .primaryFocus
+                                                                        ?.unfocus();
+                                                                  },
+                                                                  child:
+                                                                      DropdownAnkletsWidget(
+                                                                    draopdown:
+                                                                        false,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Chains',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLargeIsCustom,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'Rings',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
@@ -789,61 +1154,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         context)
                                                                     .bodyLargeIsCustom,
                                                           ),
-                                                ),
-                                              ),
-                                            ),
-                                            Builder(
-                                              builder: (context) => InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await showAlignedDialog(
-                                                    context: context,
-                                                    isGlobal: false,
-                                                    avoidOverflow: false,
-                                                    targetAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, 1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    followerAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, -1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    builder: (dialogContext) {
-                                                      return Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              DropdownAnkletsWidget(
-                                                            draopdown: false,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Text(
-                                                  'Haram',
-                                                  style:
-                                                      FlutterFlowTheme.of(
-                                                              context)
+                                                    ),
+                                                    Text(
+                                                      'Earrings',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
@@ -856,61 +1171,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         context)
                                                                     .bodyLargeIsCustom,
                                                           ),
-                                                ),
-                                              ),
-                                            ),
-                                            Builder(
-                                              builder: (context) => InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await showAlignedDialog(
-                                                    context: context,
-                                                    isGlobal: false,
-                                                    avoidOverflow: false,
-                                                    targetAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, 1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    followerAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, -1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    builder: (dialogContext) {
-                                                      return Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              DropdownAnkletsWidget(
-                                                            draopdown: false,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Text(
-                                                  'Bangles',
-                                                  style:
-                                                      FlutterFlowTheme.of(
-                                                              context)
+                                                    ),
+                                                    Text(
+                                                      'Traditional Jewellery Combo Pack',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
@@ -923,61 +1188,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         context)
                                                                     .bodyLargeIsCustom,
                                                           ),
-                                                ),
-                                              ),
-                                            ),
-                                            Builder(
-                                              builder: (context) => InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await showAlignedDialog(
-                                                    context: context,
-                                                    isGlobal: false,
-                                                    avoidOverflow: false,
-                                                    targetAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, 1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    followerAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, -1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    builder: (dialogContext) {
-                                                      return Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              DropdownAnkletsWidget(
-                                                            draopdown: false,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Text(
-                                                  'Bracelets',
-                                                  style:
-                                                      FlutterFlowTheme.of(
-                                                              context)
+                                                    ),
+                                                    Text(
+                                                      'Wedding Bridal Jewellery',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
@@ -990,61 +1205,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         context)
                                                                     .bodyLargeIsCustom,
                                                           ),
-                                                ),
-                                              ),
-                                            ),
-                                            Builder(
-                                              builder: (context) => InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await showAlignedDialog(
-                                                    context: context,
-                                                    isGlobal: false,
-                                                    avoidOverflow: false,
-                                                    targetAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, 1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    followerAnchor:
-                                                        AlignmentDirectional(
-                                                                -1.0, -1.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    builder: (dialogContext) {
-                                                      return Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              DropdownAnkletsWidget(
-                                                            draopdown: false,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Text(
-                                                  'Chains',
-                                                  style:
-                                                      FlutterFlowTheme.of(
-                                                              context)
+                                                    ),
+                                                    Text(
+                                                      'Wedding Combo Jewellery',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyLarge
                                                           .override(
                                                             fontFamily:
@@ -1057,127 +1222,45 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         context)
                                                                     .bodyLargeIsCustom,
                                                           ),
+                                                    ),
+                                                    Text(
+                                                      'Dollar chain',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyLarge
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeIsCustom,
+                                                          ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(width: 25.0)),
                                                 ),
                                               ),
                                             ),
-                                            Text(
-                                              'Rings',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLargeIsCustom,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Earrings',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLargeIsCustom,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Traditional Jewellery Combo Pack',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLargeIsCustom,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Wedding Bridal Jewellery',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLargeIsCustom,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Wedding Combo Jewellery',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLargeIsCustom,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Dollar chain',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLargeIsCustom,
-                                                      ),
-                                            ),
-                                          ].divide(SizedBox(width: 25.0)),
+                                          ),
+                                          onEnter: ((event) async {
+                                            safeSetState(() => _model
+                                                .mouseRegionHovered = true);
+                                          }),
+                                          onExit: ((event) async {
+                                            safeSetState(() => _model
+                                                .mouseRegionHovered = false);
+                                          }),
                                         ),
-                                      ),
-                                      onEnter: ((event) async {
-                                        safeSetState(() =>
-                                            _model.mouseRegionHovered = true);
-                                      }),
-                                      onExit: ((event) async {
-                                        safeSetState(() =>
-                                            _model.mouseRegionHovered = false);
-                                      }),
+                                      ]
+                                          .divide(SizedBox(width: 25.0))
+                                          .addToStart(SizedBox(width: 0.0))
+                                          .addToEnd(SizedBox(width: 0.0)),
                                     ),
-                                  ]
-                                      .divide(SizedBox(width: 25.0))
-                                      .addToStart(SizedBox(width: 0.0))
-                                      .addToEnd(SizedBox(width: 0.0)),
+                                  ),
                                 ),
                               ),
                             ),
@@ -1324,20 +1407,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             60.0, 20.0, 60.0, 0.0),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: wrapWithModel(
-                                  model: _model.productscategoryModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: ProductscategoryWidget(),
-                                ),
+                        child: ScrollConfiguration(
+                          behavior: ScrollConfiguration.of(context).copyWith(
+                            scrollbars: false,
+                            dragDevices: {
+                              PointerDeviceKind.mouse,
+                              PointerDeviceKind.touch,
+                              PointerDeviceKind.stylus,
+                              PointerDeviceKind.unknown,
+                            },
+                          ),
+                          child: Scrollbar(
+                            controller: _model.productcategoryScrollController,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              controller:
+                                  _model.productcategoryScrollController,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: wrapWithModel(
+                                      model: _model.productscategoryModel,
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: ProductscategoryWidget(),
+                                    ),
+                                  ),
+                                ].divide(SizedBox(width: 20.0)),
                               ),
-                            ].divide(SizedBox(width: 20.0)),
+                            ),
                           ),
                         ),
                       ),
