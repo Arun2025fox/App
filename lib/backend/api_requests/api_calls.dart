@@ -34,33 +34,6 @@ class GenerateCatalogueCall {
         r'''$.products''',
         true,
       ) as List?;
-  static List<String>? name(dynamic response) => (getJsonField(
-        response,
-        r'''$.products[:].name''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-  static List<int>? salePrice(dynamic response) => (getJsonField(
-        response,
-        r'''$.products[:].product_variants[:].saleprice''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
-  static List<String>? images(dynamic response) => (getJsonField(
-        response,
-        r'''$.products[:].product_variants[:].image_url''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
 }
 
 class ApiPagingParams {

@@ -110,6 +110,14 @@ flutter:
     - assets/pdfs/
     - assets/jsons/
 
+  fonts:
+    - family: 'cabinetGrotesk'
+      fonts:
+        - asset: assets/fonts/CabinetGrotesk-Regular.otf
+        - asset: assets/fonts/CabinetGrotesk-Medium.otf
+          weight: 500
+        - asset: assets/fonts/CabinetGrotesk-Bold.otf
+          weight: 700
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,7 +1,8 @@
-import '/components/filterbydropdown_widget.dart';
-import '/components/itemcards_widget.dart';
-import '/components/productscategory_copy_widget.dart';
-import '/components/productscategory_widget.dart';
+import '/components/filterbydropdown/filterbydropdown_widget.dart';
+import '/components/itemcards/itemcards_widget.dart';
+import '/components/itemcards_mobile/itemcards_mobile_widget.dart';
+import '/components/productscategory/productscategory_widget.dart';
+import '/components/productscategory_copy/productscategory_copy_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'home_page_widget.dart' show HomePageWidget;
@@ -34,7 +35,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Model for filterbydropdown component.
   late FilterbydropdownModel filterbydropdownModel;
   // Model for itemcards component.
-  late ItemcardsModel itemcardsModel1;
+  late ItemcardsModel itemcardsModel;
   // State field(s) for PageView widget.
   PageController? pageViewController1;
 
@@ -49,8 +50,10 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? Function(BuildContext, String?)? searchbarTextController2Validator;
   // Model for productscategoryCopy component.
   late ProductscategoryCopyModel productscategoryCopyModel;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel2;
+  // Model for itemcards-mobile component.
+  late ItemcardsMobileModel itemcardsMobileModel1;
+  // Model for itemcards-mobile component.
+  late ItemcardsMobileModel itemcardsMobileModel2;
   // State field(s) for PageView widget.
   PageController? pageViewController2;
 
@@ -64,10 +67,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void initState(BuildContext context) {
     productscategoryModel = createModel(context, () => ProductscategoryModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
-    itemcardsModel1 = createModel(context, () => ItemcardsModel());
+    itemcardsModel = createModel(context, () => ItemcardsModel());
     productscategoryCopyModel =
         createModel(context, () => ProductscategoryCopyModel());
-    itemcardsModel2 = createModel(context, () => ItemcardsModel());
+    itemcardsMobileModel1 = createModel(context, () => ItemcardsMobileModel());
+    itemcardsMobileModel2 = createModel(context, () => ItemcardsMobileModel());
   }
 
   @override
@@ -77,11 +81,12 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
     productscategoryModel.dispose();
     filterbydropdownModel.dispose();
-    itemcardsModel1.dispose();
+    itemcardsModel.dispose();
     searchbarFocusNode2?.dispose();
     searchbarTextController2?.dispose();
 
     productscategoryCopyModel.dispose();
-    itemcardsModel2.dispose();
+    itemcardsMobileModel1.dispose();
+    itemcardsMobileModel2.dispose();
   }
 }
