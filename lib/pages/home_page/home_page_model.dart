@@ -51,9 +51,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Model for productscategoryCopy component.
   late ProductscategoryCopyModel productscategoryCopyModel;
   // Model for itemcards-mobile component.
-  late ItemcardsMobileModel itemcardsMobileModel1;
-  // Model for itemcards-mobile component.
-  late ItemcardsMobileModel itemcardsMobileModel2;
+  late ItemcardsMobileModel itemcardsMobileModel;
   // State field(s) for PageView widget.
   PageController? pageViewController2;
 
@@ -70,8 +68,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     itemcardsModel = createModel(context, () => ItemcardsModel());
     productscategoryCopyModel =
         createModel(context, () => ProductscategoryCopyModel());
-    itemcardsMobileModel1 = createModel(context, () => ItemcardsMobileModel());
-    itemcardsMobileModel2 = createModel(context, () => ItemcardsMobileModel());
+    itemcardsMobileModel = createModel(context, () => ItemcardsMobileModel());
   }
 
   @override
@@ -86,7 +83,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     searchbarTextController2?.dispose();
 
     productscategoryCopyModel.dispose();
-    itemcardsMobileModel1.dispose();
-    itemcardsMobileModel2.dispose();
+    itemcardsMobileModel.dispose();
   }
 }

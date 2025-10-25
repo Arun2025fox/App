@@ -2959,12 +2959,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 clipBehavior: Clip.none,
                                 children: [
                                   wrapWithModel(
-                                    model: _model.itemcardsMobileModel1,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ItemcardsMobileWidget(),
-                                  ),
-                                  wrapWithModel(
-                                    model: _model.itemcardsMobileModel2,
+                                    model: _model.itemcardsMobileModel,
                                     updateCallback: () => safeSetState(() {}),
                                     child: ItemcardsMobileWidget(),
                                   ),
