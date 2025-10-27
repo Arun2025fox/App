@@ -42,10 +42,11 @@ abstract class FlutterFlowTheme {
   late Color info;
 
   late Color customColor1;
-  late Color customColor2;
-  late Color blue;
   late Color green;
-  late Color background;
+  late Color newBgForWebsite;
+  late Color buttonColour;
+  late Color customColor2;
+  late Color customColor3;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -166,10 +167,11 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color info = const Color(0xFF000000);
 
   late Color customColor1 = const Color(0xFF242424);
-  late Color customColor2 = const Color(0xFF89DC8C);
-  late Color blue = const Color(0xFF5794F2);
   late Color green = const Color(0xFF89DC8C);
-  late Color background = const Color(0xFFF5F5F5);
+  late Color newBgForWebsite = const Color(0xFF101828);
+  late Color buttonColour = const Color(0xFF00B306);
+  late Color customColor2 = const Color(0xFF082834);
+  late Color customColor3 = const Color(0xFF66BBAA);
 }
 
 abstract class Typography {
@@ -225,107 +227,116 @@ class MobileTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Italiana';
-  bool get displayLargeIsCustom => false;
-  TextStyle get displayLarge => GoogleFonts.italiana(
+  String get displayLargeFamily => 'cabinetGrotesk';
+  bool get displayLargeIsCustom => true;
+  TextStyle get displayLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.bold,
         fontSize: 32.0,
       );
-  String get displayMediumFamily => 'Italiana';
-  bool get displayMediumIsCustom => false;
-  TextStyle get displayMedium => GoogleFonts.italiana(
+  String get displayMediumFamily => 'cabinetGrotesk';
+  bool get displayMediumIsCustom => true;
+  TextStyle get displayMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.bold,
         fontSize: 28.0,
       );
-  String get displaySmallFamily => 'Italiana';
-  bool get displaySmallIsCustom => false;
-  TextStyle get displaySmall => GoogleFonts.italiana(
+  String get displaySmallFamily => 'cabinetGrotesk';
+  bool get displaySmallIsCustom => true;
+  TextStyle get displaySmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.bold,
         fontSize: 26.0,
       );
-  String get headlineLargeFamily => 'Italiana';
-  bool get headlineLargeIsCustom => false;
-  TextStyle get headlineLarge => GoogleFonts.italiana(
+  String get headlineLargeFamily => 'cabinetGrotesk';
+  bool get headlineLargeIsCustom => true;
+  TextStyle get headlineLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineMediumFamily => 'Italiana';
-  bool get headlineMediumIsCustom => false;
-  TextStyle get headlineMedium => GoogleFonts.italiana(
+  String get headlineMediumFamily => 'cabinetGrotesk';
+  bool get headlineMediumIsCustom => true;
+  TextStyle get headlineMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get headlineSmallFamily => 'Italiana';
-  bool get headlineSmallIsCustom => false;
-  TextStyle get headlineSmall => GoogleFonts.italiana(
+  String get headlineSmallFamily => 'cabinetGrotesk';
+  bool get headlineSmallIsCustom => true;
+  TextStyle get headlineSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'Italiana';
-  bool get titleLargeIsCustom => false;
-  TextStyle get titleLarge => GoogleFonts.italiana(
+  String get titleLargeFamily => 'cabinetGrotesk';
+  bool get titleLargeIsCustom => true;
+  TextStyle get titleLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleMediumFamily => 'Italiana';
-  bool get titleMediumIsCustom => false;
-  TextStyle get titleMedium => GoogleFonts.italiana(
+  String get titleMediumFamily => 'cabinetGrotesk';
+  bool get titleMediumIsCustom => true;
+  TextStyle get titleMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get titleSmallFamily => 'Italiana';
-  bool get titleSmallIsCustom => false;
-  TextStyle get titleSmall => GoogleFonts.italiana(
+  String get titleSmallFamily => 'cabinetGrotesk';
+  bool get titleSmallIsCustom => true;
+  TextStyle get titleSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 14.0,
       );
-  String get labelLargeFamily => 'Lato';
+  String get labelLargeFamily => 'Nunito';
   bool get labelLargeIsCustom => false;
-  TextStyle get labelLarge => GoogleFonts.lato(
+  TextStyle get labelLarge => GoogleFonts.nunito(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 22.0,
       );
-  String get labelMediumFamily => 'Lato';
+  String get labelMediumFamily => 'Nunito';
   bool get labelMediumIsCustom => false;
-  TextStyle get labelMedium => GoogleFonts.lato(
+  TextStyle get labelMedium => GoogleFonts.nunito(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Lato';
+  String get labelSmallFamily => 'Nunito';
   bool get labelSmallIsCustom => false;
-  TextStyle get labelSmall => GoogleFonts.lato(
+  TextStyle get labelSmall => GoogleFonts.nunito(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Lato';
+  String get bodyLargeFamily => 'Nunito';
   bool get bodyLargeIsCustom => false;
-  TextStyle get bodyLarge => GoogleFonts.lato(
+  TextStyle get bodyLarge => GoogleFonts.nunito(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Lato';
+  String get bodyMediumFamily => 'Nunito';
   bool get bodyMediumIsCustom => false;
-  TextStyle get bodyMedium => GoogleFonts.lato(
+  TextStyle get bodyMedium => GoogleFonts.nunito(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Lato';
+  String get bodySmallFamily => 'Nunito';
   bool get bodySmallIsCustom => false;
-  TextStyle get bodySmall => GoogleFonts.lato(
+  TextStyle get bodySmall => GoogleFonts.nunito(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -337,107 +348,122 @@ class TabletTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Italiana';
-  bool get displayLargeIsCustom => false;
-  TextStyle get displayLarge => GoogleFonts.italiana(
+  String get displayLargeFamily => 'cabinetGrotesk';
+  bool get displayLargeIsCustom => true;
+  TextStyle get displayLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 40.0,
       );
-  String get displayMediumFamily => 'Italiana';
-  bool get displayMediumIsCustom => false;
-  TextStyle get displayMedium => GoogleFonts.italiana(
+  String get displayMediumFamily => 'cabinetGrotesk';
+  bool get displayMediumIsCustom => true;
+  TextStyle get displayMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get displaySmallFamily => 'Italiana';
-  bool get displaySmallIsCustom => false;
-  TextStyle get displaySmall => GoogleFonts.italiana(
+  String get displaySmallFamily => 'cabinetGrotesk';
+  bool get displaySmallIsCustom => true;
+  TextStyle get displaySmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 30.0,
       );
-  String get headlineLargeFamily => 'Italiana';
-  bool get headlineLargeIsCustom => false;
-  TextStyle get headlineLarge => GoogleFonts.italiana(
+  String get headlineLargeFamily => 'cabinetGrotesk';
+  bool get headlineLargeIsCustom => true;
+  TextStyle get headlineLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 26.0,
       );
-  String get headlineMediumFamily => 'Italiana';
-  bool get headlineMediumIsCustom => false;
-  TextStyle get headlineMedium => GoogleFonts.italiana(
+  String get headlineMediumFamily => 'cabinetGrotesk';
+  bool get headlineMediumIsCustom => true;
+  TextStyle get headlineMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Italiana';
-  bool get headlineSmallIsCustom => false;
-  TextStyle get headlineSmall => GoogleFonts.italiana(
+  String get headlineSmallFamily => 'cabinetGrotesk';
+  bool get headlineSmallIsCustom => true;
+  TextStyle get headlineSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get titleLargeFamily => 'Italiana';
-  bool get titleLargeIsCustom => false;
-  TextStyle get titleLarge => GoogleFonts.italiana(
+  String get titleLargeFamily => 'cabinetGrotesk';
+  bool get titleLargeIsCustom => true;
+  TextStyle get titleLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleMediumFamily => 'Italiana';
-  bool get titleMediumIsCustom => false;
-  TextStyle get titleMedium => GoogleFonts.italiana(
+  String get titleMediumFamily => 'cabinetGrotesk';
+  bool get titleMediumIsCustom => true;
+  TextStyle get titleMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Italiana';
-  bool get titleSmallIsCustom => false;
-  TextStyle get titleSmall => GoogleFonts.italiana(
+  String get titleSmallFamily => 'cabinetGrotesk';
+  bool get titleSmallIsCustom => true;
+  TextStyle get titleSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Lato';
-  bool get labelLargeIsCustom => false;
-  TextStyle get labelLarge => GoogleFonts.lato(
+  String get labelLargeFamily => 'cabinetGrotesk';
+  bool get labelLargeIsCustom => true;
+  TextStyle get labelLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get labelMediumFamily => 'Lato';
-  bool get labelMediumIsCustom => false;
-  TextStyle get labelMedium => GoogleFonts.lato(
+  String get labelMediumFamily => 'cabinetGrotesk';
+  bool get labelMediumIsCustom => true;
+  TextStyle get labelMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Lato';
-  bool get labelSmallIsCustom => false;
-  TextStyle get labelSmall => GoogleFonts.lato(
+  String get labelSmallFamily => 'cabinetGrotesk';
+  bool get labelSmallIsCustom => true;
+  TextStyle get labelSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Lato';
-  bool get bodyLargeIsCustom => false;
-  TextStyle get bodyLarge => GoogleFonts.lato(
+  String get bodyLargeFamily => 'cabinetGrotesk';
+  bool get bodyLargeIsCustom => true;
+  TextStyle get bodyLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get bodyMediumFamily => 'Lato';
-  bool get bodyMediumIsCustom => false;
-  TextStyle get bodyMedium => GoogleFonts.lato(
+  String get bodyMediumFamily => 'cabinetGrotesk';
+  bool get bodyMediumIsCustom => true;
+  TextStyle get bodyMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodySmallFamily => 'Lato';
-  bool get bodySmallIsCustom => false;
-  TextStyle get bodySmall => GoogleFonts.lato(
+  String get bodySmallFamily => 'cabinetGrotesk';
+  bool get bodySmallIsCustom => true;
+  TextStyle get bodySmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
@@ -449,107 +475,122 @@ class DesktopTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Italiana';
-  bool get displayLargeIsCustom => false;
-  TextStyle get displayLarge => GoogleFonts.italiana(
+  String get displayLargeFamily => 'cabinetGrotesk';
+  bool get displayLargeIsCustom => true;
+  TextStyle get displayLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 57.0,
       );
-  String get displayMediumFamily => 'Italiana';
-  bool get displayMediumIsCustom => false;
-  TextStyle get displayMedium => GoogleFonts.italiana(
+  String get displayMediumFamily => 'cabinetGrotesk';
+  bool get displayMediumIsCustom => true;
+  TextStyle get displayMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 45.0,
       );
-  String get displaySmallFamily => 'Italiana';
-  bool get displaySmallIsCustom => false;
-  TextStyle get displaySmall => GoogleFonts.italiana(
+  String get displaySmallFamily => 'cabinetGrotesk';
+  bool get displaySmallIsCustom => true;
+  TextStyle get displaySmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 26.0,
       );
-  String get headlineLargeFamily => 'Italiana';
-  bool get headlineLargeIsCustom => false;
-  TextStyle get headlineLarge => GoogleFonts.italiana(
+  String get headlineLargeFamily => 'cabinetGrotesk';
+  bool get headlineLargeIsCustom => true;
+  TextStyle get headlineLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Italiana';
-  bool get headlineMediumIsCustom => false;
-  TextStyle get headlineMedium => GoogleFonts.italiana(
+  String get headlineMediumFamily => 'cabinetGrotesk';
+  bool get headlineMediumIsCustom => true;
+  TextStyle get headlineMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'Italiana';
-  bool get headlineSmallIsCustom => false;
-  TextStyle get headlineSmall => GoogleFonts.italiana(
+  String get headlineSmallFamily => 'cabinetGrotesk';
+  bool get headlineSmallIsCustom => true;
+  TextStyle get headlineSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Italiana';
-  bool get titleLargeIsCustom => false;
-  TextStyle get titleLarge => GoogleFonts.italiana(
+  String get titleLargeFamily => 'cabinetGrotesk';
+  bool get titleLargeIsCustom => true;
+  TextStyle get titleLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleMediumFamily => 'Italiana';
-  bool get titleMediumIsCustom => false;
-  TextStyle get titleMedium => GoogleFonts.italiana(
+  String get titleMediumFamily => 'cabinetGrotesk';
+  bool get titleMediumIsCustom => true;
+  TextStyle get titleMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Italiana';
-  bool get titleSmallIsCustom => false;
-  TextStyle get titleSmall => GoogleFonts.italiana(
+  String get titleSmallFamily => 'cabinetGrotesk';
+  bool get titleSmallIsCustom => true;
+  TextStyle get titleSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Lato';
-  bool get labelLargeIsCustom => false;
-  TextStyle get labelLarge => GoogleFonts.lato(
+  String get labelLargeFamily => 'cabinetGrotesk';
+  bool get labelLargeIsCustom => true;
+  TextStyle get labelLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 28.0,
       );
-  String get labelMediumFamily => 'Lato';
-  bool get labelMediumIsCustom => false;
-  TextStyle get labelMedium => GoogleFonts.lato(
+  String get labelMediumFamily => 'cabinetGrotesk';
+  bool get labelMediumIsCustom => true;
+  TextStyle get labelMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Lato';
-  bool get labelSmallIsCustom => false;
-  TextStyle get labelSmall => GoogleFonts.lato(
+  String get labelSmallFamily => 'cabinetGrotesk';
+  bool get labelSmallIsCustom => true;
+  TextStyle get labelSmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Lato';
-  bool get bodyLargeIsCustom => false;
-  TextStyle get bodyLarge => GoogleFonts.lato(
+  String get bodyLargeFamily => 'cabinetGrotesk';
+  bool get bodyLargeIsCustom => true;
+  TextStyle get bodyLarge => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get bodyMediumFamily => 'Lato';
-  bool get bodyMediumIsCustom => false;
-  TextStyle get bodyMedium => GoogleFonts.lato(
+  String get bodyMediumFamily => 'cabinetGrotesk';
+  bool get bodyMediumIsCustom => true;
+  TextStyle get bodyMedium => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodySmallFamily => 'Lato';
-  bool get bodySmallIsCustom => false;
-  TextStyle get bodySmall => GoogleFonts.lato(
+  String get bodySmallFamily => 'cabinetGrotesk';
+  bool get bodySmallIsCustom => true;
+  TextStyle get bodySmall => TextStyle(
+        fontFamily: 'cabinetGrotesk',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,

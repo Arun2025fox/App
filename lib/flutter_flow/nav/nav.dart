@@ -54,6 +54,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'loginpage')
               : LoginpageWidget(),
+        ),
+        FFRoute(
+          name: Login4Widget.routeName,
+          path: Login4Widget.routePath,
+          builder: (context, params) => Login4Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
