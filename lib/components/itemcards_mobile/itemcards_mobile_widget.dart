@@ -36,8 +36,8 @@ class _ItemcardsMobileWidgetState extends State<ItemcardsMobileWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 168.25,
-      height: 301.0,
+      width: 171.2,
+      height: 350.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.circular(10.0),
@@ -70,67 +70,80 @@ class _ItemcardsMobileWidgetState extends State<ItemcardsMobileWidget> {
                 ),
               ],
             ),
-            Align(
-              alignment: AlignmentDirectional(-1.0, 0.0),
-              child: Text(
-                'Foaming dollar chain',
-                style: FlutterFlowTheme.of(context).bodyLarge.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
-                      useGoogleFonts:
-                          !FlutterFlowTheme.of(context).bodyLargeIsCustom,
-                    ),
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-1.0, 0.0),
-              child: Text(
-                '100',
-                style: FlutterFlowTheme.of(context).labelLarge.override(
-                      fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w600,
-                      useGoogleFonts:
-                          !FlutterFlowTheme.of(context).labelLargeIsCustom,
-                    ),
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-1.0, 1.0),
-              child: Container(
-                width: 63.76,
-                height: 29.8,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondary,
-                  borderRadius: BorderRadius.circular(10.0),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Align(
+                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  child: Text(
+                    'Foaming dollar chain',
+                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyLargeFamily,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodyLargeIsCustom,
+                        ),
+                  ),
                 ),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        size: 15.0,
-                      ),
-                      Text(
-                        '3.0',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: !FlutterFlowTheme.of(context)
-                                  .bodyMediumIsCustom,
-                            ),
-                      ),
-                    ]
-                        .divide(SizedBox(width: 5.0))
-                        .addToStart(SizedBox(width: 10.0))
-                        .addToEnd(SizedBox(width: 10.0)),
+                Align(
+                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  child: Text(
+                    '100',
+                    style: FlutterFlowTheme.of(context).labelLarge.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).labelLargeFamily,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w600,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).labelLargeIsCustom,
+                        ),
+                  ),
+                ),
+              ].divide(SizedBox(height: 14.0)),
+            ),
+            Expanded(
+              child: Align(
+                alignment: AlignmentDirectional(-1.0, 1.0),
+                child: Container(
+                  width: 63.8,
+                  height: 29.8,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondary,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          size: 15.0,
+                        ),
+                        Text(
+                          '3.0',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
+                              ),
+                        ),
+                      ]
+                          .divide(SizedBox(width: 5.0))
+                          .addToStart(SizedBox(width: 10.0))
+                          .addToEnd(SizedBox(width: 10.0)),
+                    ),
                   ),
                 ),
               ),

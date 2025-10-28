@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dropdown_anklets/dropdown_anklets_widget.dart';
 import '/components/filterbydropdown/filterbydropdown_widget.dart';
 import '/components/itemcards/itemcards_widget.dart';
@@ -1515,66 +1517,94 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ],
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Theme(
-                                        data: ThemeData(
-                                          checkboxTheme: CheckboxThemeData(
-                                            visualDensity:
-                                                VisualDensity.compact,
-                                            materialTapTargetSize:
-                                                MaterialTapTargetSize
-                                                    .shrinkWrap,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0),
+                                  FutureBuilder<ApiCallResponse>(
+                                    future: GetCategoriesCall.call(),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        child: Checkbox(
-                                          value: _model.checkboxValue1 ??= true,
-                                          onChanged: (newValue) async {
-                                            safeSetState(() => _model
-                                                .checkboxValue1 = newValue!);
-                                          },
-                                          activeColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                          checkColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Hello World',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.nunitoSans(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ]
-                                        .divide(SizedBox(width: 5.0))
-                                        .addToStart(SizedBox(width: 12.0)),
+                                        );
+                                      }
+                                      final lisitngGetCategoriesResponse =
+                                          snapshot.data!;
+
+                                      return Builder(
+                                        builder: (context) {
+                                          final categorieslist = getJsonField(
+                                            lisitngGetCategoriesResponse
+                                                .jsonBody,
+                                            r'''$.category''',
+                                          ).toList();
+
+                                          return Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: List.generate(
+                                                    categorieslist.length,
+                                                    (categorieslistIndex) {
+                                              final categorieslistItem =
+                                                  categorieslist[
+                                                      categorieslistIndex];
+                                              return Theme(
+                                                data: ThemeData(
+                                                  checkboxTheme:
+                                                      CheckboxThemeData(
+                                                    visualDensity:
+                                                        VisualDensity.compact,
+                                                    materialTapTargetSize:
+                                                        MaterialTapTargetSize
+                                                            .shrinkWrap,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4.0),
+                                                    ),
+                                                  ),
+                                                ),
+                                                child: Checkbox(
+                                                  key: ValueKey(getJsonField(
+                                                    categorieslistItem,
+                                                    r'''$.category''',
+                                                  ).toString()),
+                                                  value: _model
+                                                              .checkboxValueMap1[
+                                                          categorieslistItem] ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    safeSetState(() => _model
+                                                                .checkboxValueMap1[
+                                                            categorieslistItem] =
+                                                        newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  checkColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                ),
+                                              );
+                                            })
+                                                .divide(SizedBox(width: 5.0))
+                                                .addToStart(
+                                                    SizedBox(width: 12.0)),
+                                          );
+                                        },
+                                      );
+                                    },
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional(-1.0, 0.0),
@@ -1902,58 +1932,124 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 0.0, 0.0),
-                                    child: Wrap(
-                                      spacing: 15.0,
-                                      runSpacing: 15.0,
-                                      alignment: WrapAlignment.start,
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.start,
-                                      direction: Axis.horizontal,
-                                      runAlignment: WrapAlignment.start,
-                                      verticalDirection: VerticalDirection.down,
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        wrapWithModel(
-                                          model: _model.itemcardsModel,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: ItemcardsWidget(),
-                                        ),
-                                      ],
+                                    child: FutureBuilder<ApiCallResponse>(
+                                      future: GenerateCatalogueCall.call(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final wrapGenerateCatalogueResponse =
+                                            snapshot.data!;
+
+                                        return Builder(
+                                          builder: (context) {
+                                            final products =
+                                                (AllProductsStruct.maybeFromMap(
+                                                                wrapGenerateCatalogueResponse
+                                                                    .jsonBody)
+                                                            ?.products
+                                                            .toList() ??
+                                                        [])
+                                                    .take(10)
+                                                    .toList();
+
+                                            return Wrap(
+                                              spacing: 15.0,
+                                              runSpacing: 15.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children:
+                                                  List.generate(products.length,
+                                                      (productsIndex) {
+                                                final productsItem =
+                                                    products[productsIndex];
+                                                return wrapWithModel(
+                                                  model: _model.itemcardsModels
+                                                      .getModel(
+                                                    productsItem.productId
+                                                        .toString(),
+                                                    productsIndex,
+                                                  ),
+                                                  updateCallback: () =>
+                                                      safeSetState(() {}),
+                                                  child: ItemcardsWidget(
+                                                    key: Key(
+                                                      'Keyaf9_${productsItem.productId.toString()}',
+                                                    ),
+                                                    name: productsItem.name,
+                                                    price:
+                                                        productsItem.saleprice,
+                                                    imageurl:
+                                                        productsItem.imageUrl,
+                                                    ratings:
+                                                        productsItem.ratings,
+                                                  ),
+                                                );
+                                              }),
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('LOADMORE pressed ...');
-                                    },
-                                    text: 'Load More',
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts:
-                                                !FlutterFlowTheme.of(context)
-                                                    .bodyLargeIsCustom,
-                                          ),
-                                      elevation: 0.0,
-                                      borderRadius: BorderRadius.circular(8.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 20.0, 0.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () {
+                                        print('LOADMORE pressed ...');
+                                      },
+                                      text: 'Load More',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  !FlutterFlowTheme.of(context)
+                                                      .bodyLargeIsCustom,
+                                            ),
+                                        elevation: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ),

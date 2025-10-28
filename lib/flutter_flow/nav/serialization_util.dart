@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
 
-import '../../flutter_flow/lat_lng.dart';
+import '/backend/schema/structs/index.dart';
+
+import '/backend/supabase/supabase.dart';
+
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
 
@@ -69,6 +71,12 @@ String? serializeParam(
         data = uploadedFileToString(param as FFUploadedFile);
       case ParamType.JSON:
         data = json.encode(param);
+
+      case ParamType.DataStruct:
+        data = param is BaseStruct ? param.serialize() : null;
+
+      case ParamType.SupabaseRow:
+        return json.encode((param as SupabaseDataRow).data);
 
       default:
         data = null;
@@ -145,13 +153,17 @@ enum ParamType {
   FFPlace,
   FFUploadedFile,
   JSON,
+
+  DataStruct,
+  SupabaseRow,
 }
 
 dynamic deserializeParam<T>(
   String? param,
   ParamType paramType,
-  bool isList,
-) {
+  bool isList, {
+  StructBuilder<T>? structBuilder,
+}) {
   try {
     if (param == null) {
       return null;
@@ -164,7 +176,12 @@ dynamic deserializeParam<T>(
       return paramValues
           .where((p) => p is String)
           .map((p) => p as String)
-          .map((p) => deserializeParam<T>(p, paramType, false))
+          .map((p) => deserializeParam<T>(
+                p,
+                paramType,
+                false,
+                structBuilder: structBuilder,
+              ))
           .where((p) => p != null)
           .map((p) => p! as T)
           .toList();
@@ -195,6 +212,71 @@ dynamic deserializeParam<T>(
         return uploadedFileFromString(param);
       case ParamType.JSON:
         return json.decode(param);
+
+      case ParamType.SupabaseRow:
+        final data = json.decode(param) as Map<String, dynamic>;
+        switch (T) {
+          case BannersRow:
+            return BannersRow(data);
+          case ShipmentTrackingRow:
+            return ShipmentTrackingRow(data);
+          case CartRow:
+            return CartRow(data);
+          case ComboItemsRow:
+            return ComboItemsRow(data);
+          case CartItemRow:
+            return CartItemRow(data);
+          case VendorRow:
+            return VendorRow(data);
+          case OrdersRow:
+            return OrdersRow(data);
+          case QueriesRow:
+            return QueriesRow(data);
+          case MasterProductRow:
+            return MasterProductRow(data);
+          case CustomersRow:
+            return CustomersRow(data);
+          case ProductCatalogueRow:
+            return ProductCatalogueRow(data);
+          case PurchaseRow:
+            return PurchaseRow(data);
+          case ProductVariantsRow:
+            return ProductVariantsRow(data);
+          case ReturnItemsRow:
+            return ReturnItemsRow(data);
+          case WishlistRow:
+            return WishlistRow(data);
+          case ComboRow:
+            return ComboRow(data);
+          case OrderItemsRow:
+            return OrderItemsRow(data);
+          case PurchaseItemsRow:
+            return PurchaseItemsRow(data);
+          case StockLedgerRow:
+            return StockLedgerRow(data);
+          case WishlistItemRow:
+            return WishlistItemRow(data);
+          case ProductCatalogueTableRow:
+            return ProductCatalogueTableRow(data);
+          case VendorTransactionsRow:
+            return VendorTransactionsRow(data);
+          case ReturnsRow:
+            return ReturnsRow(data);
+          case LogsRow:
+            return LogsRow(data);
+          case AddressesRow:
+            return AddressesRow(data);
+          case UsersRow:
+            return UsersRow(data);
+          case ReviewsRow:
+            return ReviewsRow(data);
+          default:
+            return null;
+        }
+
+      case ParamType.DataStruct:
+        final data = json.decode(param) as Map<String, dynamic>? ?? {};
+        return structBuilder != null ? structBuilder(data) : null;
 
       default:
         return null;

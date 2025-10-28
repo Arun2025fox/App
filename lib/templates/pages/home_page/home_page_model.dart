@@ -42,7 +42,12 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Model for productscategory component.
   late ProductscategoryModel productscategoryModel;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue1;
+  Map<dynamic, bool> checkboxValueMap1 = {};
+  List<dynamic> get checkboxCheckedItems1 => checkboxValueMap1.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
+
   // State field(s) for Slider widget.
   double? sliderValue;
   // State field(s) for Checkbox widget.
@@ -51,8 +56,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? checkboxValue3;
   // Model for filterbydropdown component.
   late FilterbydropdownModel filterbydropdownModel;
-  // Model for itemcards component.
-  late ItemcardsModel itemcardsModel;
+  // Models for itemcards dynamic component.
+  late FlutterFlowDynamicModels<ItemcardsModel> itemcardsModels;
   // State field(s) for PageView widget.
   PageController? pageViewController1;
 
@@ -85,7 +90,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     productcategoryScrollController = ScrollController();
     productscategoryModel = createModel(context, () => ProductscategoryModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
-    itemcardsModel = createModel(context, () => ItemcardsModel());
+    itemcardsModels = FlutterFlowDynamicModels(() => ItemcardsModel());
     productscategoryCopyModel =
         createModel(context, () => ProductscategoryCopyModel());
     itemcardsMobileModel = createModel(context, () => ItemcardsMobileModel());
@@ -101,7 +106,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     productcategoryScrollController?.dispose();
     productscategoryModel.dispose();
     filterbydropdownModel.dispose();
-    itemcardsModel.dispose();
+    itemcardsModels.dispose();
     searchbarFocusNode2?.dispose();
     searchbarTextController2?.dispose();
 
