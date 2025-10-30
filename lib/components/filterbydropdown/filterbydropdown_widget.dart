@@ -49,7 +49,7 @@ class _FilterbydropdownWidgetState extends State<FilterbydropdownWidget> {
           'New Arrivals',
           'Price (High to Low)',
           'Price (Low to High)',
-          'Discount'
+          'Today\'s Offer'
         ]),
         optionLabels: [
           'Relevance',

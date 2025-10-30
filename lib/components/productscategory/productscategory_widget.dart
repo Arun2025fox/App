@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,12 @@ import 'productscategory_model.dart';
 export 'productscategory_model.dart';
 
 class ProductscategoryWidget extends StatefulWidget {
-  const ProductscategoryWidget({super.key});
+  const ProductscategoryWidget({
+    super.key,
+    required this.categorieslistimages,
+  });
+
+  final SinglecategoryStruct? categorieslistimages;
 
   @override
   State<ProductscategoryWidget> createState() => _ProductscategoryWidgetState();
@@ -68,7 +74,10 @@ class _ProductscategoryWidgetState extends State<ProductscategoryWidget> {
             ),
           ),
           Text(
-            'Hello World',
+            valueOrDefault<String>(
+              widget.categorieslistimages?.categoryName,
+              'NA',
+            ),
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                   letterSpacing: 0.0,

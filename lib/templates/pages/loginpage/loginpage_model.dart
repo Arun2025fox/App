@@ -11,12 +11,6 @@ class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
   FocusNode? searchbarFocusNode;
   TextEditingController? searchbarTextController;
   String? Function(BuildContext, String?)? searchbarTextControllerValidator;
-  // State field(s) for Row widget.
-  ScrollController? rowController1;
-  // State field(s) for MouseRegion widget.
-  bool mouseRegionHovered = false;
-  // State field(s) for Row widget.
-  ScrollController? rowController2;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode1;
   TextEditingController? emailAddressTextController1;
@@ -42,8 +36,6 @@ class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
 
   @override
   void initState(BuildContext context) {
-    rowController1 = ScrollController();
-    rowController2 = ScrollController();
     passwordVisibility1 = false;
     buttonModel1 = createModel(context, () => ButtonModel());
     passwordVisibility2 = false;
@@ -55,8 +47,6 @@ class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
     searchbarFocusNode?.dispose();
     searchbarTextController?.dispose();
 
-    rowController1?.dispose();
-    rowController2?.dispose();
     emailAddressFocusNode1?.dispose();
     emailAddressTextController1?.dispose();
 
