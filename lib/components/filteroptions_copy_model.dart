@@ -1,12 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'filteroptions_widget.dart' show FilteroptionsWidget;
+import 'filteroptions_copy_widget.dart' show FilteroptionsCopyWidget;
 import 'package:flutter/material.dart';
 
-class FilteroptionsModel extends FlutterFlowModel<FilteroptionsWidget> {
-  ///  Local state fields for this component.
-
-  int? selectedSubCats;
-
+class FilteroptionsCopyModel extends FlutterFlowModel<FilteroptionsCopyWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Checkbox widget.

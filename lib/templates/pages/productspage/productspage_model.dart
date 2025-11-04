@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/components/breadcrumps_widget.dart';
 import '/components/filterbydropdown/filterbydropdown_widget.dart';
 import '/components/itemcards/itemcards_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,8 +14,8 @@ class ProductspageModel extends FlutterFlowModel<ProductspageWidget> {
   FocusNode? searchbarFocusNode;
   TextEditingController? searchbarTextController;
   String? Function(BuildContext, String?)? searchbarTextControllerValidator;
-  // State field(s) for Row widget.
-  ScrollController? rowController;
+  // Model for breadcrumps component.
+  late BreadcrumpsModel breadcrumpsModel;
   // State field(s) for Checkbox widget.
   Map<SinglecategoryStruct, bool> checkboxValueMap1 = {};
   List<SinglecategoryStruct> get checkboxCheckedItems1 =>
@@ -36,7 +37,7 @@ class ProductspageModel extends FlutterFlowModel<ProductspageWidget> {
 
   @override
   void initState(BuildContext context) {
-    rowController = ScrollController();
+    breadcrumpsModel = createModel(context, () => BreadcrumpsModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
     itemcardsModels = FlutterFlowDynamicModels(() => ItemcardsModel());
   }
@@ -46,7 +47,7 @@ class ProductspageModel extends FlutterFlowModel<ProductspageWidget> {
     searchbarFocusNode?.dispose();
     searchbarTextController?.dispose();
 
-    rowController?.dispose();
+    breadcrumpsModel.dispose();
     filterbydropdownModel.dispose();
     itemcardsModels.dispose();
   }

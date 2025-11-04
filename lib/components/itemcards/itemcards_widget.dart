@@ -104,7 +104,13 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
                   Align(
                     alignment: AlignmentDirectional(-1.0, 0.0),
                     child: Text(
-                      widget.price.toString(),
+                      formatNumber(
+                        widget.price,
+                        formatType: FormatType.custom,
+                        currency: '₹',
+                        format: '',
+                        locale: '',
+                      ),
                       style: FlutterFlowTheme.of(context).labelLarge.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).labelLargeFamily,

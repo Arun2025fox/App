@@ -1,8 +1,8 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'dropdown_anklets_model.dart';
 export 'dropdown_anklets_model.dart';
 
@@ -47,7 +47,8 @@ class _DropdownAnkletsWidgetState extends State<DropdownAnkletsWidget> {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Container(
-        width: 284.05,
+        width: 817.8,
+        height: 481.13,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -62,67 +63,53 @@ class _DropdownAnkletsWidgetState extends State<DropdownAnkletsWidget> {
           ],
           borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-          child: Builder(
-            builder: (context) {
-              final subcat =
-                  widget.subcategorieslist?.subcategories.toList() ?? [];
+        child: Align(
+          alignment: AlignmentDirectional(-1.0, -1.0),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 12.0),
+            child: Builder(
+              builder: (context) {
+                final subcat =
+                    widget.subcategorieslist?.subcategories.toList() ?? [];
 
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(subcat.length, (subcatIndex) {
-                  final subcatItem = subcat[subcatIndex];
-                  return Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  subcatItem.name,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.plusJakartaSans(
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: Color(0xFF14181B),
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                return ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    scrollbars: true,
+                    dragDevices: {
+                      PointerDeviceKind.mouse,
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.stylus,
+                      PointerDeviceKind.unknown,
+                    },
+                  ),
+                  child: Scrollbar(
+                      child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                      crossAxisSpacing: 10.0,
+                      mainAxisSpacing: 10.0,
+                      childAspectRatio: 1.0,
                     ),
-                  );
-                }),
-              );
-            },
+                    scrollDirection: Axis.vertical,
+                    itemCount: subcat.length,
+                    itemBuilder: (context, subcatIndex) {
+                      final subcatItem = subcat[subcatIndex];
+                      return Text(
+                        subcatItem.name,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
+                            ),
+                      );
+                    },
+                  )),
+                );
+              },
+            ),
           ),
         ),
       ),

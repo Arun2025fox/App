@@ -1,4 +1,8 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/filterbydropdown/filterbydropdown_widget.dart';
+import '/components/filteroptions_widget.dart';
+import '/components/header_widget.dart';
 import '/components/itemcards/itemcards_widget.dart';
 import '/components/itemcards_mobile/itemcards_mobile_widget.dart';
 import '/components/productscategory/productscategory_widget.dart';
@@ -11,22 +15,42 @@ import 'package:flutter/material.dart';
 
 class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  Local state fields for this page.
-  /// list of prodcuts
-  List<dynamic> productList = [];
-  void addToProductList(dynamic item) => productList.add(item);
-  void removeFromProductList(dynamic item) => productList.remove(item);
-  void removeAtIndexFromProductList(int index) => productList.removeAt(index);
-  void insertAtIndexInProductList(int index, dynamic item) =>
-      productList.insert(index, item);
-  void updateProductListAtIndex(int index, Function(dynamic) updateFn) =>
-      productList[index] = updateFn(productList[index]);
+
+  List<int> selectedSubcategoryIds = [];
+  void addToSelectedSubcategoryIds(int item) =>
+      selectedSubcategoryIds.add(item);
+  void removeFromSelectedSubcategoryIds(int item) =>
+      selectedSubcategoryIds.remove(item);
+  void removeAtIndexFromSelectedSubcategoryIds(int index) =>
+      selectedSubcategoryIds.removeAt(index);
+  void insertAtIndexInSelectedSubcategoryIds(int index, int item) =>
+      selectedSubcategoryIds.insert(index, item);
+  void updateSelectedSubcategoryIdsAtIndex(int index, Function(int) updateFn) =>
+      selectedSubcategoryIds[index] = updateFn(selectedSubcategoryIds[index]);
+
+  List<ProductStruct> filteredProducts = [];
+  void addToFilteredProducts(ProductStruct item) => filteredProducts.add(item);
+  void removeFromFilteredProducts(ProductStruct item) =>
+      filteredProducts.remove(item);
+  void removeAtIndexFromFilteredProducts(int index) =>
+      filteredProducts.removeAt(index);
+  void insertAtIndexInFilteredProducts(int index, ProductStruct item) =>
+      filteredProducts.insert(index, item);
+  void updateFilteredProductsAtIndex(
+          int index, Function(ProductStruct) updateFn) =>
+      filteredProducts[index] = updateFn(filteredProducts[index]);
+
+  AllProductsStruct? allProductsList;
+  void updateAllProductsListStruct(Function(AllProductsStruct) updateFn) {
+    updateFn(allProductsList ??= AllProductsStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for searchbar widget.
-  FocusNode? searchbarFocusNode1;
-  TextEditingController? searchbarTextController1;
-  String? Function(BuildContext, String?)? searchbarTextController1Validator;
+  // Stores action output result for [Backend Call - API (Generate Catalogue)] action in HomePage widget.
+  ApiCallResponse? apiResult2ih;
+  // Model for header component.
+  late HeaderModel headerModel;
   // State field(s) for Row widget.
   ScrollController? rowController1;
   // State field(s) for MouseRegion widget.
@@ -41,6 +65,10 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ScrollController? productcategoryScrollController;
   // Models for productscategory dynamic component.
   late FlutterFlowDynamicModels<ProductscategoryModel> productscategoryModels;
+  // Models for filteroptions dynamic component.
+  late FlutterFlowDynamicModels<FilteroptionsModel> filteroptionsModels;
+  // Stores action output result for [Custom Action - filterProductsBySubcategories] action in filteroptions widget.
+  List<ProductStruct>? filteredList;
   // State field(s) for Slider widget.
   double? sliderValue;
   // State field(s) for Checkbox widget.
@@ -60,9 +88,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       ? pageViewController1!.page!.round()
       : 0;
   // State field(s) for searchbar widget.
-  FocusNode? searchbarFocusNode2;
-  TextEditingController? searchbarTextController2;
-  String? Function(BuildContext, String?)? searchbarTextController2Validator;
+  FocusNode? searchbarFocusNode;
+  TextEditingController? searchbarTextController;
+  String? Function(BuildContext, String?)? searchbarTextControllerValidator;
   // Model for productscategoryCopy component.
   late ProductscategoryCopyModel productscategoryCopyModel;
   // Model for itemcards-mobile component.
@@ -78,11 +106,13 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void initState(BuildContext context) {
+    headerModel = createModel(context, () => HeaderModel());
     rowController1 = ScrollController();
     rowController2 = ScrollController();
     productcategoryScrollController = ScrollController();
     productscategoryModels =
         FlutterFlowDynamicModels(() => ProductscategoryModel());
+    filteroptionsModels = FlutterFlowDynamicModels(() => FilteroptionsModel());
     filterbydropdownModel = createModel(context, () => FilterbydropdownModel());
     itemcardsModels = FlutterFlowDynamicModels(() => ItemcardsModel());
     productscategoryCopyModel =
@@ -92,19 +122,24 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void dispose() {
-    searchbarFocusNode1?.dispose();
-    searchbarTextController1?.dispose();
-
+    headerModel.dispose();
     rowController1?.dispose();
     rowController2?.dispose();
     productcategoryScrollController?.dispose();
     productscategoryModels.dispose();
+    filteroptionsModels.dispose();
     filterbydropdownModel.dispose();
     itemcardsModels.dispose();
-    searchbarFocusNode2?.dispose();
-    searchbarTextController2?.dispose();
+    searchbarFocusNode?.dispose();
+    searchbarTextController?.dispose();
 
     productscategoryCopyModel.dispose();
     itemcardsMobileModel.dispose();
   }
+
+  /// Action blocks.
+  Future filterProductsonSubCategory(
+    BuildContext context, {
+    int? subcategoryID,
+  }) async {}
 }

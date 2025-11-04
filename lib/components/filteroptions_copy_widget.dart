@@ -2,25 +2,24 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'filteroptions_model.dart';
-export 'filteroptions_model.dart';
+import 'filteroptions_copy_model.dart';
+export 'filteroptions_copy_model.dart';
 
-class FilteroptionsWidget extends StatefulWidget {
-  const FilteroptionsWidget({
+class FilteroptionsCopyWidget extends StatefulWidget {
+  const FilteroptionsCopyWidget({
     super.key,
     this.subcategoryvalues,
-    required this.onFilterChange,
   });
 
   final SinglesubcategoryStruct? subcategoryvalues;
-  final Future Function(int? currentlyselectedsbcategory)? onFilterChange;
 
   @override
-  State<FilteroptionsWidget> createState() => _FilteroptionsWidgetState();
+  State<FilteroptionsCopyWidget> createState() =>
+      _FilteroptionsCopyWidgetState();
 }
 
-class _FilteroptionsWidgetState extends State<FilteroptionsWidget> {
-  late FilteroptionsModel _model;
+class _FilteroptionsCopyWidgetState extends State<FilteroptionsCopyWidget> {
+  late FilteroptionsCopyModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -31,7 +30,7 @@ class _FilteroptionsWidgetState extends State<FilteroptionsWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FilteroptionsModel());
+    _model = createModel(context, () => FilteroptionsCopyModel());
   }
 
   @override
@@ -65,14 +64,6 @@ class _FilteroptionsWidgetState extends State<FilteroptionsWidget> {
               value: _model.checkboxValue ??= false,
               onChanged: (newValue) async {
                 safeSetState(() => _model.checkboxValue = newValue!);
-                if (newValue!) {
-                  // CollectSubCatsSelected
-                  _model.selectedSubCats =
-                      widget.subcategoryvalues?.subcategoryId;
-                  await widget.onFilterChange?.call(
-                    _model.selectedSubCats,
-                  );
-                }
               },
               side: (FlutterFlowTheme.of(context).alternate != null)
                   ? BorderSide(
