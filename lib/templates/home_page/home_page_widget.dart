@@ -3,7 +3,6 @@ import '/backend/schema/structs/index.dart';
 import '/components/dropdown_anklets/dropdown_anklets_widget.dart';
 import '/components/filterbydropdown/filterbydropdown_widget.dart';
 import '/components/filteroptions_widget.dart';
-import '/components/header_widget.dart';
 import '/components/itemcards/itemcards_widget.dart';
 import '/components/itemcards_mobile/itemcards_mobile_widget.dart';
 import '/components/productscategory/productscategory_widget.dart';
@@ -25,6 +24,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -60,12 +60,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             .products
             .toList()
             .cast<ProductStruct>();
+        _model.itemsCounttoDisplay = 10;
         safeSetState(() {});
       }
     });
 
-    _model.searchbarTextController ??= TextEditingController();
-    _model.searchbarFocusNode ??= FocusNode();
+    _model.searchbarTextController1 ??= TextEditingController();
+    _model.searchbarFocusNode1 ??= FocusNode();
+
+    _model.searchbarTextController2 ??= TextEditingController();
+    _model.searchbarFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -79,6 +83,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<ApiCallResponse>(
       future: GenerateCatalogueCall.call(),
       builder: (context, snapshot) {
@@ -466,10 +472,356 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
-                                  child: wrapWithModel(
-                                    model: _model.headerModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: HeaderWidget(),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 15.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                  HomePageWidget.routeName);
+                                            },
+                                            child: Container(
+                                              width: 120.0,
+                                              height: 120.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: SvgPicture.asset(
+                                                'assets/images/logo.svg',
+                                                fit: BoxFit.contain,
+                                                alignment: Alignment(0.0, 0.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          'Rajashree Fashions',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineMedium
+                                              .override(
+                                                font: GoogleFonts.italiana(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMedium
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Expanded(
+                                                child: Container(
+                                                  width: 300.0,
+                                                  decoration: BoxDecoration(),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(35.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Flexible(
+                                                          flex: 1,
+                                                          child: Container(
+                                                            width: 500.0,
+                                                            child:
+                                                                TextFormField(
+                                                              controller: _model
+                                                                  .searchbarTextController1,
+                                                              focusNode: _model
+                                                                  .searchbarFocusNode1,
+                                                              autofocus: false,
+                                                              enabled: true,
+                                                              obscureText:
+                                                                  false,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                isDense: true,
+                                                                alignLabelWithHint:
+                                                                    false,
+                                                                hintText:
+                                                                    'Search',
+                                                                hintStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
+                                                                    ),
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                ),
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Color(
+                                                                        0x00000000),
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                ),
+                                                                errorBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                ),
+                                                                focusedErrorBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                ),
+                                                                filled: true,
+                                                                fillColor: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(context)
+                                                                            .bodyMediumIsCustom,
+                                                                  ),
+                                                              cursorColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                              enableInteractiveSelection:
+                                                                  true,
+                                                              validator: _model
+                                                                  .searchbarTextController1Validator
+                                                                  .asValidator(
+                                                                      context),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        FlutterFlowIconButton(
+                                                          borderRadius: 5.0,
+                                                          buttonSize: 40.0,
+                                                          fillColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          icon: Icon(
+                                                            Icons.search,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .tertiary,
+                                                            size: 24.0,
+                                                          ),
+                                                          onPressed: () {
+                                                            print(
+                                                                'IconButton pressed ...');
+                                                          },
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child:
+                                                                FlutterFlowIconButton(
+                                                              borderRadius: 0.0,
+                                                              buttonSize: 40.0,
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .person_outline_outlined,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                                size: 30.0,
+                                                              ),
+                                                              onPressed:
+                                                                  () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  LoginpageWidget
+                                                                      .routeName,
+                                                                  extra: <String,
+                                                                      dynamic>{
+                                                                    kTransitionInfoKey:
+                                                                        TransitionInfo(
+                                                                      hasTransition:
+                                                                          true,
+                                                                      transitionType:
+                                                                          PageTransitionType
+                                                                              .rightToLeft,
+                                                                    ),
+                                                                  },
+                                                                );
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child:
+                                                                FlutterFlowIconButton(
+                                                              borderRadius: 0.0,
+                                                              buttonSize: 40.0,
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .favorite_border,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                                size: 30.0,
+                                                              ),
+                                                              onPressed: () {
+                                                                print(
+                                                                    'IconButton pressed ...');
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child:
+                                                                FlutterFlowIconButton(
+                                                              borderRadius: 0.0,
+                                                              buttonSize: 40.0,
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .shopping_cart_outlined,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                                size: 30.0,
+                                                              ),
+                                                              onPressed: () {
+                                                                print(
+                                                                    'IconButton pressed ...');
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ].divide(
+                                                          SizedBox(width: 5.0)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ].divide(SizedBox(width: 10.0)),
+                                          ),
+                                        ),
+                                      ]
+                                          .divide(SizedBox(width: 0.0))
+                                          .addToStart(SizedBox(width: 45.0))
+                                          .addToEnd(SizedBox(width: 60.0)),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -978,9 +1330,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                               ),
                                               FFButtonWidget(
-                                                onPressed: () {
-                                                  print(
-                                                      'clearallbtn pressed ...');
+                                                onPressed: () async {
+                                                  FFAppState()
+                                                      .selectedSubCategoriesHomeApplevel = [];
+                                                  safeSetState(() {});
+                                                  _model.filteredProducts =
+                                                      AllProductsStruct
+                                                              .maybeFromMap((_model
+                                                                      .apiResult2ih
+                                                                      ?.jsonBody ??
+                                                                  ''))!
+                                                          .products
+                                                          .toList()
+                                                          .cast<
+                                                              ProductStruct>();
+                                                  safeSetState(() {});
                                                 },
                                                 text: 'Clear All',
                                                 options: FFButtonOptions(
@@ -1161,13 +1525,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           subcategoryvalues:
                                                                               subcategoryfilterItem,
                                                                           onFilterChange:
-                                                                              (currentlyselectedsbcategory) async {
-                                                                            _model.addToSelectedSubcategoryIds(currentlyselectedsbcategory!);
-                                                                            safeSetState(() {});
+                                                                              (currentlyselectedsbcategory, checked) async {
+                                                                            if (checked) {
+                                                                              FFAppState().addToSelectedSubCategoriesHomeApplevel(currentlyselectedsbcategory!);
+                                                                              safeSetState(() {});
+                                                                            } else {
+                                                                              FFAppState().removeFromSelectedSubCategoriesHomeApplevel(currentlyselectedsbcategory!);
+                                                                              safeSetState(() {});
+                                                                            }
+
                                                                             _model.filteredList =
                                                                                 await actions.filterProductsBySubcategories(
                                                                               _model.allProductsList!,
-                                                                              _model.selectedSubcategoryIds.toList(),
+                                                                              FFAppState().selectedSubCategoriesHomeApplevel.toList(),
                                                                             );
                                                                             _model.filteredProducts =
                                                                                 _model.filteredList!.toList().cast<ProductStruct>();
@@ -1574,8 +1944,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           builder: (context) {
                                             final productsListinHome = _model
                                                 .filteredProducts
+                                                .take(
+                                                    _model.itemsCounttoDisplay!)
                                                 .toList()
-                                                .take(10)
+                                                .take(100)
                                                 .toList();
 
                                             return Wrap(
@@ -1635,8 +2007,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('LOADMORE pressed ...');
+                                          onPressed: () async {
+                                            _model.itemsCounttoDisplay =
+                                                _model.itemsCounttoDisplay! +
+                                                    10;
+                                            safeSetState(() {});
                                           },
                                           text: 'Load More',
                                           options: FFButtonOptions(
@@ -2664,8 +3039,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     width: 500.0,
                                     child: TextFormField(
                                       controller:
-                                          _model.searchbarTextController,
-                                      focusNode: _model.searchbarFocusNode,
+                                          _model.searchbarTextController2,
+                                      focusNode: _model.searchbarFocusNode2,
                                       autofocus: false,
                                       enabled: true,
                                       obscureText: false,
@@ -2741,7 +3116,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           .primaryText,
                                       enableInteractiveSelection: true,
                                       validator: _model
-                                          .searchbarTextControllerValidator
+                                          .searchbarTextController2Validator
                                           .asValidator(context),
                                     ),
                                   ),

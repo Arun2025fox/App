@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'filteroptions_model.dart';
 export 'filteroptions_model.dart';
 
@@ -13,7 +14,8 @@ class FilteroptionsWidget extends StatefulWidget {
   });
 
   final SinglesubcategoryStruct? subcategoryvalues;
-  final Future Function(int? currentlyselectedsbcategory)? onFilterChange;
+  final Future Function(int? currentlyselectedsbcategory, bool checked)?
+      onFilterChange;
 
   @override
   State<FilteroptionsWidget> createState() => _FilteroptionsWidgetState();
@@ -43,6 +45,8 @@ class _FilteroptionsWidgetState extends State<FilteroptionsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -62,7 +66,11 @@ class _FilteroptionsWidgetState extends State<FilteroptionsWidget> {
               unselectedWidgetColor: FlutterFlowTheme.of(context).alternate,
             ),
             child: Checkbox(
-              value: _model.checkboxValue ??= false,
+              value: _model.checkboxValue ??= FFAppState()
+                      .selectedSubCategoriesHomeApplevel
+                      .contains(widget.subcategoryvalues?.subcategoryId)
+                  ? true
+                  : false,
               onChanged: (newValue) async {
                 safeSetState(() => _model.checkboxValue = newValue!);
                 if (newValue!) {
@@ -71,6 +79,15 @@ class _FilteroptionsWidgetState extends State<FilteroptionsWidget> {
                       widget.subcategoryvalues?.subcategoryId;
                   await widget.onFilterChange?.call(
                     _model.selectedSubCats,
+                    true,
+                  );
+                } else {
+                  _model.selectedSubCats =
+                      widget.subcategoryvalues?.subcategoryId;
+                  safeSetState(() {});
+                  await widget.onFilterChange?.call(
+                    _model.selectedSubCats,
+                    false,
                   );
                 }
               },

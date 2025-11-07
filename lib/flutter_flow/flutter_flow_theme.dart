@@ -47,6 +47,7 @@ abstract class FlutterFlowTheme {
   late Color buttonColour;
   late Color customColor2;
   late Color customColor3;
+  late Color customColor4;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -172,6 +173,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color buttonColour = const Color(0xFF00B306);
   late Color customColor2 = const Color(0xFF082834);
   late Color customColor3 = const Color(0xFF66BBAA);
+  late Color customColor4 = const Color(0xFFC4C4C4);
 }
 
 abstract class Typography {

@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/filterbydropdown/filterbydropdown_widget.dart';
 import '/components/filteroptions_widget.dart';
-import '/components/header_widget.dart';
 import '/components/itemcards/itemcards_widget.dart';
 import '/components/itemcards_mobile/itemcards_mobile_widget.dart';
 import '/components/productscategory/productscategory_widget.dart';
@@ -15,18 +14,6 @@ import 'package:flutter/material.dart';
 
 class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  Local state fields for this page.
-
-  List<int> selectedSubcategoryIds = [];
-  void addToSelectedSubcategoryIds(int item) =>
-      selectedSubcategoryIds.add(item);
-  void removeFromSelectedSubcategoryIds(int item) =>
-      selectedSubcategoryIds.remove(item);
-  void removeAtIndexFromSelectedSubcategoryIds(int index) =>
-      selectedSubcategoryIds.removeAt(index);
-  void insertAtIndexInSelectedSubcategoryIds(int index, int item) =>
-      selectedSubcategoryIds.insert(index, item);
-  void updateSelectedSubcategoryIdsAtIndex(int index, Function(int) updateFn) =>
-      selectedSubcategoryIds[index] = updateFn(selectedSubcategoryIds[index]);
 
   List<ProductStruct> filteredProducts = [];
   void addToFilteredProducts(ProductStruct item) => filteredProducts.add(item);
@@ -45,12 +32,16 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     updateFn(allProductsList ??= AllProductsStruct());
   }
 
+  int? itemsCounttoDisplay;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (Generate Catalogue)] action in HomePage widget.
   ApiCallResponse? apiResult2ih;
-  // Model for header component.
-  late HeaderModel headerModel;
+  // State field(s) for searchbar widget.
+  FocusNode? searchbarFocusNode1;
+  TextEditingController? searchbarTextController1;
+  String? Function(BuildContext, String?)? searchbarTextController1Validator;
   // State field(s) for Row widget.
   ScrollController? rowController1;
   // State field(s) for MouseRegion widget.
@@ -88,9 +79,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       ? pageViewController1!.page!.round()
       : 0;
   // State field(s) for searchbar widget.
-  FocusNode? searchbarFocusNode;
-  TextEditingController? searchbarTextController;
-  String? Function(BuildContext, String?)? searchbarTextControllerValidator;
+  FocusNode? searchbarFocusNode2;
+  TextEditingController? searchbarTextController2;
+  String? Function(BuildContext, String?)? searchbarTextController2Validator;
   // Model for productscategoryCopy component.
   late ProductscategoryCopyModel productscategoryCopyModel;
   // Model for itemcards-mobile component.
@@ -106,7 +97,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void initState(BuildContext context) {
-    headerModel = createModel(context, () => HeaderModel());
     rowController1 = ScrollController();
     rowController2 = ScrollController();
     productcategoryScrollController = ScrollController();
@@ -122,7 +112,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void dispose() {
-    headerModel.dispose();
+    searchbarFocusNode1?.dispose();
+    searchbarTextController1?.dispose();
+
     rowController1?.dispose();
     rowController2?.dispose();
     productcategoryScrollController?.dispose();
@@ -130,8 +122,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     filteroptionsModels.dispose();
     filterbydropdownModel.dispose();
     itemcardsModels.dispose();
-    searchbarFocusNode?.dispose();
-    searchbarTextController?.dispose();
+    searchbarFocusNode2?.dispose();
+    searchbarTextController2?.dispose();
 
     productscategoryCopyModel.dispose();
     itemcardsMobileModel.dispose();
