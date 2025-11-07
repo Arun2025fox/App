@@ -477,7 +477,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
+                                  10.0, 20.0, 10.0, 20.0),
                               child: Material(
                                 color: Colors.transparent,
                                 elevation: 2.0,

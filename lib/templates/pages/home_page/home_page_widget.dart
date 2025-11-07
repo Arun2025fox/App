@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/dropdown_anklets/dropdown_anklets_widget.dart';
 import '/components/filterbydropdown/filterbydropdown_widget.dart';
 import '/components/filteroptions_widget.dart';
@@ -1045,66 +1046,83 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             Expanded(
                               child: Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 552.4,
-                                  child: CarouselSlider(
-                                    items: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                        child: Image.asset(
-                                          'assets/images/AI_Generated_Image_2025-09-08_495049298019201.png',
-                                          width: 544.0,
-                                          height: 234.1,
-                                          fit: BoxFit.cover,
-                                          alignment: Alignment(0.0, 0.0),
-                                        ),
-                                      ),
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                        child: Image.asset(
-                                          'assets/images/AI_Generated_Image_2025-09-08_495049297018201.png',
-                                          width: 19.2,
-                                          height: 654.0,
-                                          fit: BoxFit.cover,
-                                          alignment: Alignment(0.0, 0.0),
-                                        ),
-                                      ),
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                        child: Image.asset(
-                                          'assets/images/envato-labs-ai-c9803143-7907-41db-9625-a5eb7175f9c8.jpg',
-                                          width: 200.0,
-                                          height: 200.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ],
-                                    carouselController:
-                                        _model.carouselController ??=
-                                            CarouselSliderController(),
-                                    options: CarouselOptions(
-                                      initialPage: 1,
-                                      viewportFraction: 1.0,
-                                      disableCenter: true,
-                                      enlargeCenterPage: true,
-                                      enlargeFactor: 0.25,
-                                      enableInfiniteScroll: true,
-                                      scrollDirection: Axis.horizontal,
-                                      autoPlay: true,
-                                      autoPlayAnimationDuration:
-                                          Duration(milliseconds: 600),
-                                      autoPlayInterval:
-                                          Duration(milliseconds: (600 + 3000)),
-                                      autoPlayCurve: Curves.linear,
-                                      pauseAutoPlayInFiniteScroll: true,
-                                      onPageChanged: (index, _) =>
-                                          _model.carouselCurrentIndex = index,
-                                    ),
+                                child: FutureBuilder<List<BannersRow>>(
+                                  future: BannersTable().queryRows(
+                                    queryFn: (q) => q,
                                   ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    List<BannersRow> carouselBannersRowList =
+                                        snapshot.data!;
+
+                                    return Container(
+                                      width: double.infinity,
+                                      height: 552.4,
+                                      child: CarouselSlider.builder(
+                                        itemCount:
+                                            carouselBannersRowList.length,
+                                        itemBuilder:
+                                            (context, carouselIndex, _) {
+                                          final carouselBannersRow =
+                                              carouselBannersRowList[
+                                                  carouselIndex];
+                                          return ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0.0),
+                                            child: Image.network(
+                                              carouselBannersRow.imageUrl,
+                                              width: 544.0,
+                                              height: 234.1,
+                                              fit: BoxFit.cover,
+                                              alignment: Alignment(0.0, 0.0),
+                                            ),
+                                          );
+                                        },
+                                        carouselController:
+                                            _model.carouselController ??=
+                                                CarouselSliderController(),
+                                        options: CarouselOptions(
+                                          initialPage: max(
+                                              0,
+                                              min(
+                                                  1,
+                                                  carouselBannersRowList
+                                                          .length -
+                                                      1)),
+                                          viewportFraction: 1.0,
+                                          disableCenter: true,
+                                          enlargeCenterPage: true,
+                                          enlargeFactor: 0.25,
+                                          enableInfiniteScroll: true,
+                                          scrollDirection: Axis.horizontal,
+                                          autoPlay: true,
+                                          autoPlayAnimationDuration:
+                                              Duration(milliseconds: 600),
+                                          autoPlayInterval: Duration(
+                                              milliseconds: (600 + 3000)),
+                                          autoPlayCurve: Curves.linear,
+                                          pauseAutoPlayInFiniteScroll: true,
+                                          onPageChanged: (index, _) => _model
+                                              .carouselCurrentIndex = index,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             ),
