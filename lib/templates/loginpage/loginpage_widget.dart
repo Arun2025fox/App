@@ -1,6 +1,7 @@
 import '/components/confirm_password_widget.dart';
 import '/components/login_email_widget.dart';
 import '/components/login_password_widget.dart';
+import '/components/mobile_number_signup_widget.dart';
 import '/components/signup_email_widget.dart';
 import '/components/signup_password_widget.dart';
 import '/components/signup_username_widget.dart';
@@ -582,17 +583,17 @@ class _LoginpageWidgetState extends State<LoginpageWidget> {
                                                         'Enter your email',
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: wrapWithModel(
-                                                    model: _model
-                                                        .mobileNumberModel,
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child: SignupUsernameWidget(
-                                                      title: 'Mobile number',
-                                                      hintText:
-                                                          'Enter your mobile number',
-                                                    ),
+                                                wrapWithModel(
+                                                  model: _model
+                                                      .mobileNumberSignupModel,
+                                                  updateCallback: () =>
+                                                      safeSetState(() {}),
+                                                  child:
+                                                      MobileNumberSignupWidget(
+                                                    title: 'Mobile number',
+                                                    hintText:
+                                                        'Enter your mobile number',
+                                                    initialValue: '+91 ',
                                                   ),
                                                 ),
                                                 wrapWithModel(
@@ -761,7 +762,7 @@ class _LoginpageWidgetState extends State<LoginpageWidget> {
                                                               print(
                                                                   'Button pressed ...');
                                                             },
-                                                  text: 'Login',
+                                                  text: 'Signup',
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:

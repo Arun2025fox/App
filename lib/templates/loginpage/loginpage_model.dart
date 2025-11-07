@@ -1,6 +1,7 @@
 import '/components/confirm_password_widget.dart';
 import '/components/login_email_widget.dart';
 import '/components/login_password_widget.dart';
+import '/components/mobile_number_signup_widget.dart';
 import '/components/signup_email_widget.dart';
 import '/components/signup_password_widget.dart';
 import '/components/signup_username_widget.dart';
@@ -22,8 +23,8 @@ class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
   late SignupUsernameModel signupUsernameModel;
   // Model for signup_email component.
   late SignupEmailModel signupEmailModel;
-  // Model for mobile_number.
-  late SignupUsernameModel mobileNumberModel;
+  // Model for mobile_number_signup component.
+  late MobileNumberSignupModel mobileNumberSignupModel;
   // Model for signup_password component.
   late SignupPasswordModel signupPasswordModel;
   // Model for confirm_password component.
@@ -42,7 +43,8 @@ class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
     loginformScrollController = ScrollController();
     signupUsernameModel = createModel(context, () => SignupUsernameModel());
     signupEmailModel = createModel(context, () => SignupEmailModel());
-    mobileNumberModel = createModel(context, () => SignupUsernameModel());
+    mobileNumberSignupModel =
+        createModel(context, () => MobileNumberSignupModel());
     signupPasswordModel = createModel(context, () => SignupPasswordModel());
     confirmPasswordModel = createModel(context, () => ConfirmPasswordModel());
     loginEmailModel = createModel(context, () => LoginEmailModel());
@@ -54,7 +56,7 @@ class LoginpageModel extends FlutterFlowModel<LoginpageWidget> {
     loginformScrollController?.dispose();
     signupUsernameModel.dispose();
     signupEmailModel.dispose();
-    mobileNumberModel.dispose();
+    mobileNumberSignupModel.dispose();
     signupPasswordModel.dispose();
     confirmPasswordModel.dispose();
     loginEmailModel.dispose();

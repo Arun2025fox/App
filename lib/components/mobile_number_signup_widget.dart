@@ -1,27 +1,28 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'signup_username_model.dart';
-export 'signup_username_model.dart';
+import 'mobile_number_signup_model.dart';
+export 'mobile_number_signup_model.dart';
 
-class SignupUsernameWidget extends StatefulWidget {
-  const SignupUsernameWidget({
+class MobileNumberSignupWidget extends StatefulWidget {
+  const MobileNumberSignupWidget({
     super.key,
     this.title,
     this.hintText,
-    this.initialValue,
+    required this.initialValue,
   });
 
   final String? title;
   final String? hintText;
-  final double? initialValue;
+  final String? initialValue;
 
   @override
-  State<SignupUsernameWidget> createState() => _SignupUsernameWidgetState();
+  State<MobileNumberSignupWidget> createState() =>
+      _MobileNumberSignupWidgetState();
 }
 
-class _SignupUsernameWidgetState extends State<SignupUsernameWidget> {
-  late SignupUsernameModel _model;
+class _MobileNumberSignupWidgetState extends State<MobileNumberSignupWidget> {
+  late MobileNumberSignupModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -32,9 +33,13 @@ class _SignupUsernameWidgetState extends State<SignupUsernameWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SignupUsernameModel());
+    _model = createModel(context, () => MobileNumberSignupModel());
 
-    _model.textController ??= TextEditingController();
+    _model.textController ??= TextEditingController(
+        text: valueOrDefault<String>(
+      widget.initialValue,
+      '+91',
+    ));
     _model.textFieldFocusNode ??= FocusNode();
   }
 
