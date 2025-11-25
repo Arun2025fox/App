@@ -47,6 +47,6 @@ class ComboRow extends SupabaseDataRow {
   double? get regularprice => getField<double>('regularprice');
   set regularprice(double? value) => setField<double>('regularprice', value);
 
-  String? get category => getField<String>('category');
-  set category(String? value) => setField<String>('category', value);
+  int? get subcategoryId => getField<int>('subcategory_id');
+  set subcategoryId(int? value) => setField<int>('subcategory_id', value);
 }

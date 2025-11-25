@@ -61,12 +61,69 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ProductspageWidget.routeName,
           path: ProductspageWidget.routePath,
-          builder: (context, params) => ProductspageWidget(),
+          builder: (context, params) => ProductspageWidget(
+            selectedCategory: params.getParam(
+              'selectedCategory',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: SinglecategoryStruct.fromSerializableMap,
+            ),
+            type: params.getParam(
+              'type',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: Product5ShoeDetailsWidget.routeName,
+          path: Product5ShoeDetailsWidget.routePath,
+          builder: (context, params) => Product5ShoeDetailsWidget(),
+        ),
+        FFRoute(
+          name: Product6JewelryDetailsWidget.routeName,
+          path: Product6JewelryDetailsWidget.routePath,
+          builder: (context, params) => Product6JewelryDetailsWidget(),
+        ),
+        FFRoute(
+          name: SingleproductviewWidget.routeName,
+          path: SingleproductviewWidget.routePath,
+          builder: (context, params) => SingleproductviewWidget(
+            productname: params.getParam(
+              'productname',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: ProductStruct.fromSerializableMap,
+            ),
+            type: params.getParam(
+              'type',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: AboutpageWidget.routeName,
           path: AboutpageWidget.routePath,
           builder: (context, params) => AboutpageWidget(),
+        ),
+        FFRoute(
+          name: BlogsWidget.routeName,
+          path: BlogsWidget.routePath,
+          builder: (context, params) => BlogsWidget(),
+        ),
+        FFRoute(
+          name: SingleBlogPageWidget.routeName,
+          path: SingleBlogPageWidget.routePath,
+          builder: (context, params) => SingleBlogPageWidget(),
+        ),
+        FFRoute(
+          name: TermsAndConditionsWidget.routeName,
+          path: TermsAndConditionsWidget.routePath,
+          builder: (context, params) => TermsAndConditionsWidget(),
+        ),
+        FFRoute(
+          name: ContactUsWidget.routeName,
+          path: ContactUsWidget.routePath,
+          builder: (context, params) => ContactUsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -7,7 +7,12 @@ import 'filterbydropdown_model.dart';
 export 'filterbydropdown_model.dart';
 
 class FilterbydropdownWidget extends StatefulWidget {
-  const FilterbydropdownWidget({super.key});
+  const FilterbydropdownWidget({
+    super.key,
+    required this.onSelect,
+  });
+
+  final Future Function(String selectedvalue)? onSelect;
 
   @override
   State<FilterbydropdownWidget> createState() => _FilterbydropdownWidgetState();
@@ -42,23 +47,23 @@ class _FilterbydropdownWidgetState extends State<FilterbydropdownWidget> {
       child: FlutterFlowDropDown<String>(
         controller: _model.dropDownValueController ??=
             FormFieldController<String>(
-          _model.dropDownValue ??= 'Relevance',
+          _model.dropDownValue ??= 'new',
         ),
-        options: List<String>.from([
-          'Relevance',
-          'New Arrivals',
-          'Price (High to Low)',
-          'Price (Low to High)',
-          'Today\'s Offer'
-        ]),
+        options: List<String>.from(['new', 'hightolow', 'lowtohigh', 'offers']),
         optionLabels: [
-          'Relevance',
           'New Arrivals',
           'Price (High to Low)',
           'Price (Low to High)',
           'Discount'
         ],
-        onChanged: (val) => safeSetState(() => _model.dropDownValue = val),
+        onChanged: (val) async {
+          safeSetState(() => _model.dropDownValue = val);
+          _model.selectedValue = _model.dropDownValue!;
+          safeSetState(() {});
+          await widget.onSelect?.call(
+            _model.selectedValue,
+          );
+        },
         width: 200.0,
         height: 40.0,
         textStyle: FlutterFlowTheme.of(context).bodyMedium.override(

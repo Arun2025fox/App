@@ -37,7 +37,7 @@ class _ItemcardsMobileWidgetState extends State<ItemcardsMobileWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 171.2,
-      height: 350.0,
+      height: 343.72,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.circular(10.0),
@@ -47,7 +47,6 @@ class _ItemcardsMobileWidgetState extends State<ItemcardsMobileWidget> {
           width: 1.0,
         ),
       ),
-      alignment: AlignmentDirectional(0.0, -1.0),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
         child: Column(

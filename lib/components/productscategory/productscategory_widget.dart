@@ -1,6 +1,7 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'productscategory_model.dart';
 export 'productscategory_model.dart';
@@ -59,16 +60,33 @@ class _ProductscategoryWidgetState extends State<ProductscategoryWidget> {
             ),
             child: Padding(
               padding: EdgeInsets.all(4.0),
-              child: Container(
-                width: 200.0,
-                height: 200.0,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: Image.network(
-                  'https://picsum.photos/seed/179/600',
-                  fit: BoxFit.cover,
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(
+                    ProductspageWidget.routeName,
+                    queryParameters: {
+                      'selectedCategory': serializeParam(
+                        widget.categorieslistimages,
+                        ParamType.DataStruct,
+                      ),
+                    }.withoutNulls,
+                  );
+                },
+                child: Container(
+                  width: 200.0,
+                  height: 200.0,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.network(
+                    'https://picsum.photos/seed/179/600',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

@@ -18,8 +18,8 @@ class MasterProductRow extends SupabaseDataRow {
   String get name => getField<String>('name')!;
   set name(String value) => setField<String>('name', value);
 
-  String? get category => getField<String>('category');
-  set category(String? value) => setField<String>('category', value);
+  int? get subcategoryId => getField<int>('subcategory_id');
+  set subcategoryId(int? value) => setField<int>('subcategory_id', value);
 
   String? get description => getField<String>('description');
   set description(String? value) => setField<String>('description', value);

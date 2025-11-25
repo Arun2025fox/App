@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -49,5 +51,24 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInSelectedSubCategoriesHomeApplevel(int index, int value) {
     selectedSubCategoriesHomeApplevel.insert(index, value);
+  }
+
+  String _selectedSortoption = '';
+  String get selectedSortoption => _selectedSortoption;
+  set selectedSortoption(String value) {
+    _selectedSortoption = value;
+  }
+
+  AllProductsStruct _AllProductsListAppState =
+      AllProductsStruct.fromSerializableMap(
+          jsonDecode('{\"products\":\"[]\"}'));
+  AllProductsStruct get AllProductsListAppState => _AllProductsListAppState;
+  set AllProductsListAppState(AllProductsStruct value) {
+    _AllProductsListAppState = value;
+  }
+
+  void updateAllProductsListAppStateStruct(
+      Function(AllProductsStruct) updateFn) {
+    updateFn(_AllProductsListAppState);
   }
 }

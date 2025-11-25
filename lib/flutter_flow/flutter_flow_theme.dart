@@ -229,74 +229,65 @@ class MobileTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'cabinetGrotesk';
-  bool get displayLargeIsCustom => true;
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displayLargeFamily => 'Cabin';
+  bool get displayLargeIsCustom => false;
+  TextStyle get displayLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 32.0,
       );
-  String get displayMediumFamily => 'cabinetGrotesk';
-  bool get displayMediumIsCustom => true;
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displayMediumFamily => 'Cabin';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 28.0,
       );
-  String get displaySmallFamily => 'cabinetGrotesk';
-  bool get displaySmallIsCustom => true;
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displaySmallFamily => 'Cabin';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.bold,
         fontSize: 26.0,
       );
-  String get headlineLargeFamily => 'cabinetGrotesk';
-  bool get headlineLargeIsCustom => true;
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineLargeFamily => 'Cabin';
+  bool get headlineLargeIsCustom => false;
+  TextStyle get headlineLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineMediumFamily => 'cabinetGrotesk';
-  bool get headlineMediumIsCustom => true;
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineMediumFamily => 'Cabin';
+  bool get headlineMediumIsCustom => false;
+  TextStyle get headlineMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get headlineSmallFamily => 'cabinetGrotesk';
-  bool get headlineSmallIsCustom => true;
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineSmallFamily => 'Cabin';
+  bool get headlineSmallIsCustom => false;
+  TextStyle get headlineSmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'cabinetGrotesk';
-  bool get titleLargeIsCustom => true;
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleLargeFamily => 'Cabin';
+  bool get titleLargeIsCustom => false;
+  TextStyle get titleLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleMediumFamily => 'cabinetGrotesk';
-  bool get titleMediumIsCustom => true;
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleMediumFamily => 'Cabin';
+  bool get titleMediumIsCustom => false;
+  TextStyle get titleMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get titleSmallFamily => 'cabinetGrotesk';
-  bool get titleSmallIsCustom => true;
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleSmallFamily => 'Cabin';
+  bool get titleSmallIsCustom => false;
+  TextStyle get titleSmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 14.0,
@@ -350,122 +341,107 @@ class TabletTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'cabinetGrotesk';
-  bool get displayLargeIsCustom => true;
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displayLargeFamily => 'Cabin';
+  bool get displayLargeIsCustom => false;
+  TextStyle get displayLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 40.0,
       );
-  String get displayMediumFamily => 'cabinetGrotesk';
-  bool get displayMediumIsCustom => true;
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displayMediumFamily => 'Cabin';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get displaySmallFamily => 'cabinetGrotesk';
-  bool get displaySmallIsCustom => true;
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displaySmallFamily => 'Cabin';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 30.0,
       );
-  String get headlineLargeFamily => 'cabinetGrotesk';
-  bool get headlineLargeIsCustom => true;
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineLargeFamily => 'Cabin';
+  bool get headlineLargeIsCustom => false;
+  TextStyle get headlineLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 26.0,
       );
-  String get headlineMediumFamily => 'cabinetGrotesk';
-  bool get headlineMediumIsCustom => true;
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineMediumFamily => 'Cabin';
+  bool get headlineMediumIsCustom => false;
+  TextStyle get headlineMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'cabinetGrotesk';
-  bool get headlineSmallIsCustom => true;
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineSmallFamily => 'Cabin';
+  bool get headlineSmallIsCustom => false;
+  TextStyle get headlineSmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get titleLargeFamily => 'cabinetGrotesk';
-  bool get titleLargeIsCustom => true;
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleLargeFamily => 'Cabin';
+  bool get titleLargeIsCustom => false;
+  TextStyle get titleLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleMediumFamily => 'cabinetGrotesk';
-  bool get titleMediumIsCustom => true;
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleMediumFamily => 'Cabin';
+  bool get titleMediumIsCustom => false;
+  TextStyle get titleMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'cabinetGrotesk';
-  bool get titleSmallIsCustom => true;
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleSmallFamily => 'Cabin';
+  bool get titleSmallIsCustom => false;
+  TextStyle get titleSmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'cabinetGrotesk';
-  bool get labelLargeIsCustom => true;
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get labelLargeFamily => 'Cabin';
+  bool get labelLargeIsCustom => false;
+  TextStyle get labelLarge => GoogleFonts.cabin(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get labelMediumFamily => 'cabinetGrotesk';
-  bool get labelMediumIsCustom => true;
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get labelMediumFamily => 'Cabin';
+  bool get labelMediumIsCustom => false;
+  TextStyle get labelMedium => GoogleFonts.cabin(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'cabinetGrotesk';
-  bool get labelSmallIsCustom => true;
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get labelSmallFamily => 'Cabin';
+  bool get labelSmallIsCustom => false;
+  TextStyle get labelSmall => GoogleFonts.cabin(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'cabinetGrotesk';
-  bool get bodyLargeIsCustom => true;
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get bodyLargeFamily => 'Cabin';
+  bool get bodyLargeIsCustom => false;
+  TextStyle get bodyLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get bodyMediumFamily => 'cabinetGrotesk';
-  bool get bodyMediumIsCustom => true;
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get bodyMediumFamily => 'Cabin';
+  bool get bodyMediumIsCustom => false;
+  TextStyle get bodyMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodySmallFamily => 'cabinetGrotesk';
-  bool get bodySmallIsCustom => true;
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get bodySmallFamily => 'Cabin';
+  bool get bodySmallIsCustom => false;
+  TextStyle get bodySmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
@@ -477,122 +453,107 @@ class DesktopTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'cabinetGrotesk';
-  bool get displayLargeIsCustom => true;
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displayLargeFamily => 'Cabin';
+  bool get displayLargeIsCustom => false;
+  TextStyle get displayLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 57.0,
       );
-  String get displayMediumFamily => 'cabinetGrotesk';
-  bool get displayMediumIsCustom => true;
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displayMediumFamily => 'Cabin';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 45.0,
       );
-  String get displaySmallFamily => 'cabinetGrotesk';
-  bool get displaySmallIsCustom => true;
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get displaySmallFamily => 'Cabin';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 26.0,
       );
-  String get headlineLargeFamily => 'cabinetGrotesk';
-  bool get headlineLargeIsCustom => true;
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineLargeFamily => 'Cabin';
+  bool get headlineLargeIsCustom => false;
+  TextStyle get headlineLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'cabinetGrotesk';
-  bool get headlineMediumIsCustom => true;
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineMediumFamily => 'Cabin';
+  bool get headlineMediumIsCustom => false;
+  TextStyle get headlineMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'cabinetGrotesk';
-  bool get headlineSmallIsCustom => true;
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get headlineSmallFamily => 'Cabin';
+  bool get headlineSmallIsCustom => false;
+  TextStyle get headlineSmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'cabinetGrotesk';
-  bool get titleLargeIsCustom => true;
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleLargeFamily => 'Cabin';
+  bool get titleLargeIsCustom => false;
+  TextStyle get titleLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleMediumFamily => 'cabinetGrotesk';
-  bool get titleMediumIsCustom => true;
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleMediumFamily => 'Cabin';
+  bool get titleMediumIsCustom => false;
+  TextStyle get titleMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'cabinetGrotesk';
-  bool get titleSmallIsCustom => true;
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get titleSmallFamily => 'Cabin';
+  bool get titleSmallIsCustom => false;
+  TextStyle get titleSmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'cabinetGrotesk';
-  bool get labelLargeIsCustom => true;
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get labelLargeFamily => 'Cabin';
+  bool get labelLargeIsCustom => false;
+  TextStyle get labelLarge => GoogleFonts.cabin(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 28.0,
       );
-  String get labelMediumFamily => 'cabinetGrotesk';
-  bool get labelMediumIsCustom => true;
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get labelMediumFamily => 'Cabin';
+  bool get labelMediumIsCustom => false;
+  TextStyle get labelMedium => GoogleFonts.cabin(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'cabinetGrotesk';
-  bool get labelSmallIsCustom => true;
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get labelSmallFamily => 'Cabin';
+  bool get labelSmallIsCustom => false;
+  TextStyle get labelSmall => GoogleFonts.cabin(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'cabinetGrotesk';
-  bool get bodyLargeIsCustom => true;
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get bodyLargeFamily => 'Cabin';
+  bool get bodyLargeIsCustom => false;
+  TextStyle get bodyLarge => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get bodyMediumFamily => 'cabinetGrotesk';
-  bool get bodyMediumIsCustom => true;
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get bodyMediumFamily => 'Cabin';
+  bool get bodyMediumIsCustom => false;
+  TextStyle get bodyMedium => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodySmallFamily => 'cabinetGrotesk';
-  bool get bodySmallIsCustom => true;
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'cabinetGrotesk',
+  String get bodySmallFamily => 'Cabin';
+  bool get bodySmallIsCustom => false;
+  TextStyle get bodySmall => GoogleFonts.cabin(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,

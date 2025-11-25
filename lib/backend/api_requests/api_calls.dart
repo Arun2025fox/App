@@ -10,7 +10,9 @@ export 'api_manager.dart' show ApiCallResponse;
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class GenerateCatalogueCall {
-  static Future<ApiCallResponse> call() async {
+  static Future<ApiCallResponse> call({
+    int? categoryID = 0,
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Generate Catalogue',
       apiUrl:
@@ -20,7 +22,9 @@ class GenerateCatalogueCall {
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2c29yZ3VpbmN2aW51aXF0b29vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MjY0ODgxOSwiZXhwIjoyMDY4MjI0ODE5fQ.9fuH7ZPslf9S875L2Q7YZxbvKoScQ-KTgIFQMOdOo9w',
       },
-      params: {},
+      params: {
+        'category_id': categoryID,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

@@ -4,6 +4,10 @@ import 'filterbydropdown_widget.dart' show FilterbydropdownWidget;
 import 'package:flutter/material.dart';
 
 class FilterbydropdownModel extends FlutterFlowModel<FilterbydropdownWidget> {
+  ///  Local state fields for this component.
+
+  String selectedValue = 'lowtohigh';
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for DropDown widget.

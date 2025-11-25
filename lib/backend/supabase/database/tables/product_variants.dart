@@ -45,8 +45,8 @@ class ProductVariantsRow extends SupabaseDataRow {
   String? get color => getField<String>('color');
   set color(String? value) => setField<String>('color', value);
 
-  double? get size => getField<double>('size');
-  set size(double? value) => setField<double>('size', value);
+  String? get size => getField<String>('size');
+  set size(String? value) => setField<String>('size', value);
 
   double? get saleprice => getField<double>('saleprice');
   set saleprice(double? value) => setField<double>('saleprice', value);

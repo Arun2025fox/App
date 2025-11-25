@@ -236,10 +236,14 @@ dynamic deserializeParam<T>(
             return MasterProductRow(data);
           case CustomersRow:
             return CustomersRow(data);
+          case SubcategoriesRow:
+            return SubcategoriesRow(data);
           case ProductCatalogueRow:
             return ProductCatalogueRow(data);
           case PurchaseRow:
             return PurchaseRow(data);
+          case ShippingCostRow:
+            return ShippingCostRow(data);
           case ProductVariantsRow:
             return ProductVariantsRow(data);
           case ReturnItemsRow:
@@ -268,6 +272,10 @@ dynamic deserializeParam<T>(
             return AddressesRow(data);
           case UsersRow:
             return UsersRow(data);
+          case ReturnsProgressRow:
+            return ReturnsProgressRow(data);
+          case CategoriesRow:
+            return CategoriesRow(data);
           case ReviewsRow:
             return ReviewsRow(data);
           default:

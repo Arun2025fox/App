@@ -49,6 +49,9 @@ class ProductCatalogueTableRow extends SupabaseDataRow {
   double? get rating => getField<double>('rating');
   set rating(double? value) => setField<double>('rating', value);
 
+  int? get subcategoryId => getField<int>('subcategory_id');
+  set subcategoryId(int? value) => setField<int>('subcategory_id', value);
+
   String? get category => getField<String>('category');
   set category(String? value) => setField<String>('category', value);
 }

@@ -6,21 +6,21 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class SinglecategoryStruct extends BaseStruct {
   SinglecategoryStruct({
-    int? id,
+    int? categoryId,
     String? categoryName,
     List<SinglesubcategoryStruct>? subcategories,
-  })  : _id = id,
+  })  : _categoryId = categoryId,
         _categoryName = categoryName,
         _subcategories = subcategories;
 
-  // "id" field.
-  int? _id;
-  int get id => _id ?? 0;
-  set id(int? val) => _id = val;
+  // "category_id" field.
+  int? _categoryId;
+  int get categoryId => _categoryId ?? 0;
+  set categoryId(int? val) => _categoryId = val;
 
-  void incrementId(int amount) => id = id + amount;
+  void incrementCategoryId(int amount) => categoryId = categoryId + amount;
 
-  bool hasId() => _id != null;
+  bool hasCategoryId() => _categoryId != null;
 
   // "category_name" field.
   String? _categoryName;
@@ -42,7 +42,7 @@ class SinglecategoryStruct extends BaseStruct {
 
   static SinglecategoryStruct fromMap(Map<String, dynamic> data) =>
       SinglecategoryStruct(
-        id: castToType<int>(data['id']),
+        categoryId: castToType<int>(data['category_id']),
         categoryName: data['category_name'] as String?,
         subcategories: getStructList(
           data['subcategories'],
@@ -55,15 +55,15 @@ class SinglecategoryStruct extends BaseStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'id': _id,
+        'category_id': _categoryId,
         'category_name': _categoryName,
         'subcategories': _subcategories?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'id': serializeParam(
-          _id,
+        'category_id': serializeParam(
+          _categoryId,
           ParamType.int,
         ),
         'category_name': serializeParam(
@@ -79,8 +79,8 @@ class SinglecategoryStruct extends BaseStruct {
 
   static SinglecategoryStruct fromSerializableMap(Map<String, dynamic> data) =>
       SinglecategoryStruct(
-        id: deserializeParam(
-          data['id'],
+        categoryId: deserializeParam(
+          data['category_id'],
           ParamType.int,
           false,
         ),
@@ -104,21 +104,21 @@ class SinglecategoryStruct extends BaseStruct {
   bool operator ==(Object other) {
     const listEquality = ListEquality();
     return other is SinglecategoryStruct &&
-        id == other.id &&
+        categoryId == other.categoryId &&
         categoryName == other.categoryName &&
         listEquality.equals(subcategories, other.subcategories);
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([id, categoryName, subcategories]);
+      const ListEquality().hash([categoryId, categoryName, subcategories]);
 }
 
 SinglecategoryStruct createSinglecategoryStruct({
-  int? id,
+  int? categoryId,
   String? categoryName,
 }) =>
     SinglecategoryStruct(
-      id: id,
+      categoryId: categoryId,
       categoryName: categoryName,
     );

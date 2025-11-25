@@ -1,5 +1,7 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'itemcards_model.dart';
 export 'itemcards_model.dart';
@@ -69,13 +71,34 @@ class _ItemcardsWidgetState extends State<ItemcardsWidget> {
               children: [
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      widget.imageurl!,
-                      width: 205.8,
-                      height: 177.85,
-                      fit: BoxFit.cover,
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed(
+                        SingleproductviewWidget.routeName,
+                        queryParameters: {
+                          'productname': serializeParam(
+                            ProductStruct(),
+                            ParamType.DataStruct,
+                          ),
+                          'type': serializeParam(
+                            widget.price?.toString(),
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        widget.imageurl!,
+                        width: 205.8,
+                        height: 177.85,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

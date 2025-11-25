@@ -34,4 +34,7 @@ class ReturnsRow extends SupabaseDataRow {
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
+
+  String? get returnedItems => getField<String>('returned_items');
+  set returnedItems(String? value) => setField<String>('returned_items', value);
 }
